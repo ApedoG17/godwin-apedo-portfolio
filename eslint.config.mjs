@@ -1,14 +1,4 @@
-import { FlatCompat } from "@eslint/eslintrc";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  resolvePluginsRelativeTo: path.resolve(__dirname, "node_modules/eslint-config-next"),
-});
+import nextConfig from "eslint-config-next/core-web-vitals";
 
 const eslintConfig = [
   {
@@ -24,10 +14,12 @@ const eslintConfig = [
       "**/*.svg",
     ],
   },
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextConfig,
   {
     rules: {
-      "react-hooks/rules-of-hooks": "off",
+      "react-hooks/set-state-in-effect": "off",
+      "react-hooks/preserve-manual-memoization": "off",
+      "react-hooks/static-components": "off",
       "@next/next/no-duplicate-head": "off",
     },
   },
