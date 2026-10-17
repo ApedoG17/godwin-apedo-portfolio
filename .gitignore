@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local browser testing & scratch artifacts
+scratch_chrome*/
+/*.png
+/portfolio.html
