@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG } from "@/lib/constants";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { IntroAnimation } from "@/components/layout/IntroAnimation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,6 +26,11 @@ export const metadata: Metadata = {
   },
   description: SITE_CONFIG.shortBio,
   authors: [{ name: SITE_CONFIG.name }],
+  icons: {
+    icon: "/images/godwin-apedo-icon.png",
+    shortcut: "/images/godwin-apedo-icon.png",
+    apple: "/images/godwin-apedo-icon.png",
+  },
   keywords: [
     "Godwin Apedo",
     "Computer Science Student",
@@ -52,9 +59,19 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-base text-content-primary font-sans overflow-x-hidden selection:bg-purple-100 selection:text-purple-700">
+        <Script
+          id="intro-session-check"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `try{var isForce=window.location.search.indexOf("intro=true")!==-1;if(!isForce&&(sessionStorage.getItem("godwin_intro_seen")||window.matchMedia("(prefers-reduced-motion: reduce)").matches)){document.documentElement.classList.add("intro-seen")}}catch(e){}`,
+          }}
+        />
+        <IntroAnimation />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-purple-700 focus:border focus:border-purple-300 focus:rounded-lg focus:shadow-md"

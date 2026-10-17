@@ -159,7 +159,7 @@ export function HeroSection() {
             ease: MOTION_EASINGS.easeOut,
             delay: shouldReduceMotion ? 0 : 0.1,
           }}
-          className="lg:col-span-5 relative flex justify-center lg:justify-end -mt-6 sm:-mt-8 lg:-mt-36"
+          className="lg:col-span-5 relative flex justify-center lg:justify-end -mt-6 sm:-mt-8 lg:mt-0"
         >
           <div className="relative w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] flex flex-col items-center">
 

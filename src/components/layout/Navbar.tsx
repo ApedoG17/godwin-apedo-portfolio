@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
@@ -115,8 +116,15 @@ export function Navbar() {
           className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 rounded-full px-1"
           aria-label="Godwin Apedo — Home"
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-600/15 to-violet-500/20 border border-purple-300 flex items-center justify-center text-purple-700 font-black text-sm group-hover:scale-105 group-hover:border-purple-500 transition-all shadow-sm">
-            GA
+          <div className="w-8 h-8 rounded-full overflow-hidden border border-purple-300 flex items-center justify-center shrink-0 group-hover:scale-105 group-hover:border-purple-500 transition-all shadow-sm bg-white">
+            <Image
+              src="/images/godwin-apedo-icon.png"
+              alt="Godwin Apedo logo"
+              width={32}
+              height={32}
+              priority
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="flex items-baseline gap-1">
             <span className="text-slate-900 font-bold text-sm tracking-tight group-hover:text-purple-600 transition-colors">

@@ -316,3 +316,9 @@ body::after {
   transform: translateY(-2px);
   border-color: rgba(139, 92, 246, 0.35);
 }
+
+/* === Intro animation overlay instant-hide on repeat visits or reduced motion === */
+.intro-seen #portfolio-intro-overlay {
+  display: none !important;
+}
+

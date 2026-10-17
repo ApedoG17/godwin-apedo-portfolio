@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SITE_CONFIG, REPO_URL } from "@/lib/constants";
 import { ExternalLink, ArrowUp } from "lucide-react";
@@ -11,11 +12,15 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-8 flex flex-col sm:flex-row items-center justify-between gap-5 text-xs text-content-muted font-mono">
         {/* Identity */}
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-          <span
-            className="inline-flex items-center justify-center w-7 h-7 rounded-md border text-xs font-bold text-purple-700 border-purple-200 bg-purple-50"
-          >
-            GA
-          </span>
+          <div className="w-7 h-7 rounded-md overflow-hidden border border-purple-200 bg-white flex items-center justify-center shrink-0 shadow-2xs">
+            <Image
+              src="/images/godwin-apedo-icon.png"
+              alt="Godwin Apedo logo"
+              width={28}
+              height={28}
+              className="w-full h-full object-cover"
+            />
+          </div>
           <p className="text-slate-800 font-medium">© 2026 {SITE_CONFIG.name}</p>
           <span className="hidden sm:inline text-slate-300">·</span>
           <p className="text-slate-500">CS Student &amp; Software Builder</p>
