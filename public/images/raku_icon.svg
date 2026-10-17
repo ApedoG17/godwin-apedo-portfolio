@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- Background: Raku brand red, rounded corners for modern look -->
+  <rect width="32" height="32" rx="6" fill="#d5001c"/>
+  <!-- Bold white R, hand-tuned for pixel-perfect clarity at small sizes -->
+  <text
+    x="16"
+    y="23"
+    font-family="Arial Black, Arial, sans-serif"
+    font-weight="900"
+    font-size="22"
+    text-anchor="middle"
+    fill="#ffffff"
+    letter-spacing="-0.5"
+  >R</text>
+</svg>
