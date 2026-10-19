@@ -143,7 +143,7 @@ export function HeroSection() {
 
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-xs sm:text-sm text-slate-800 glass-card border-slate-200/80 hover:border-purple-300 hover:text-purple-700 bg-white/80 shadow-sm transition-all duration-200"
+              className="inline-flex items-center gap-2 px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-semibold text-xs sm:text-sm text-slate-800 dark:text-slate-200 glass-card border-slate-200/80 dark:border-white/10 hover:border-purple-300 hover:text-purple-700 dark:hover:text-purple-300 bg-white/80 dark:bg-white/[0.06] shadow-sm transition-all duration-200"
             >
               <span>Let&apos;s Connect</span>
             </a>
@@ -201,7 +201,7 @@ export function HeroSection() {
             {/* Broad atmospheric mist bed - Behind lower torso */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[120%] h-36 pointer-events-none z-5"
+              className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[120%] h-36 pointer-events-none z-5 hero-torso-mist"
               style={{
                 background:
                   "radial-gradient(ellipse 80% 55% at 50% 90%, #fbfbfe 45%, rgba(251, 251, 254, 0.95) 60%, rgba(245, 243, 255, 0.7) 80%, transparent 100%)",
@@ -212,7 +212,7 @@ export function HeroSection() {
             {/* Cloud puff - Left (Base only) */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-6 -left-8 w-52 h-24 rounded-full pointer-events-none z-12 opacity-95"
+              className="absolute -bottom-6 -left-8 w-52 h-24 rounded-full pointer-events-none z-12 opacity-95 hero-cloud-puff-left"
               style={{
                 background:
                   "radial-gradient(circle at center, #ffffff 40%, rgba(245, 243, 255, 0.85) 68%, transparent 100%)",
@@ -223,7 +223,7 @@ export function HeroSection() {
             {/* Cloud puff - Right (Base only) */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-6 -right-8 w-56 h-24 rounded-full pointer-events-none z-12 opacity-95"
+              className="absolute -bottom-6 -right-8 w-56 h-24 rounded-full pointer-events-none z-12 opacity-95 hero-cloud-puff-right"
               style={{
                 background:
                   "radial-gradient(circle at center, #ffffff 45%, rgba(238, 242, 255, 0.85) 68%, transparent 100%)",
@@ -234,7 +234,7 @@ export function HeroSection() {
             {/* Foreground cloud base roll (Base only) */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-20 rounded-full pointer-events-none z-12 opacity-95"
+              className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-20 rounded-full pointer-events-none z-12 opacity-95 hero-cloud-roll"
               style={{
                 background:
                   "radial-gradient(ellipse at center, #ffffff 55%, rgba(251, 251, 254, 0.95) 78%, transparent 100%)",
@@ -246,7 +246,7 @@ export function HeroSection() {
             <div
               className="absolute top-16 -right-2 sm:top-20 sm:-right-4 md:-right-6 z-25 glass-card rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 animate-float shadow-lg max-w-[210px] sm:max-w-[235px] border border-purple-200/90 bg-white/95"
             >
-              <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl overflow-hidden border border-purple-200/90 flex items-center justify-center shrink-0 shadow-sm bg-white p-0.5">
+              <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl overflow-hidden border border-purple-200/90 flex items-center justify-center shrink-0 shadow-sm bg-white crest-frame p-0.5">
                 <Image
                   src="/images/chef_apedo_icon.png"
                   alt="Chef Apedo Foods"

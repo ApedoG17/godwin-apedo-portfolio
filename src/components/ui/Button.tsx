@@ -29,7 +29,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       primary:
         "bg-slate-900 text-white font-semibold hover:bg-slate-800 hover:shadow-[0_4px_16px_rgba(15,23,42,0.18)] border border-slate-900",
       secondary:
-        "bg-white text-slate-800 hover:bg-slate-50 hover:text-purple-700 border border-slate-200 hover:border-purple-300 shadow-2xs",
+        "bg-white dark:bg-white/[0.08] text-slate-800 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-white/[0.14] hover:text-purple-700 dark:hover:text-purple-300 border border-slate-200 dark:border-white/12 hover:border-purple-300 dark:hover:border-purple-400/40 shadow-2xs copy-btn-secondary",
       outline:
         "bg-transparent text-slate-700 hover:text-purple-700 hover:bg-purple-50/50 border border-slate-200 hover:border-purple-300",
       ghost:

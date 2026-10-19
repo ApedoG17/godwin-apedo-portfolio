@@ -6,6 +6,7 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { IntroAnimation } from "@/components/layout/IntroAnimation";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,25 +66,34 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-base text-content-primary font-sans overflow-x-hidden selection:bg-purple-100 selection:text-purple-700">
         <Script
+          id="theme-persistence-check"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("godwin_theme");if(t==="dark"){document.documentElement.classList.add("dark")}else{document.documentElement.classList.remove("dark")}}catch(e){}`,
+          }}
+        />
+        <Script
           id="intro-session-check"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `try{var isForce=window.location.search.indexOf("intro=true")!==-1;if(!isForce&&(sessionStorage.getItem("godwin_intro_seen")||window.matchMedia("(prefers-reduced-motion: reduce)").matches)){document.documentElement.classList.add("intro-seen")}}catch(e){}`,
           }}
         />
-        <IntroAnimation />
-        <a
-          href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-purple-700 focus:border focus:border-purple-300 focus:rounded-lg focus:shadow-md"
-        >
-          Skip to main content
-        </a>
-        <div id="top" />
-        <Navbar />
-        <div id="main-content" className="flex-1 flex flex-col pt-0">
-          {children}
-        </div>
-        <Footer />
+        <ThemeProvider>
+          <IntroAnimation />
+          <a
+            href="#main-content"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-purple-700 focus:border focus:border-purple-300 focus:rounded-lg focus:shadow-md"
+          >
+            Skip to main content
+          </a>
+          <div id="top" />
+          <Navbar />
+          <div id="main-content" className="flex-1 flex flex-col pt-0">
+            {children}
+          </div>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

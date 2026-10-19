@@ -80,7 +80,7 @@ function MilestoneCard({
           {/* Institutional Crest Emblem Frame */}
           {entry.logo && (
             <div
-              className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white border p-2 flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-all duration-300 ${
+              className={`relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white crest-frame border p-2 flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-all duration-300 ${
                 isCurrent
                   ? "border-purple-200 shadow-[0_4px_16px_rgba(124,58,237,0.1)] group-hover:border-purple-400"
                   : "border-slate-200 group-hover:border-purple-200"
@@ -205,8 +205,8 @@ export function EducationSection() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 relative z-10">
             {/* Node 1: St. Peter's */}
-            <div className="flex items-center gap-3 bg-[#fbfbfe] w-fit sm:pr-4">
-              <div className="w-11 h-11 rounded-full bg-white border-2 border-slate-300 p-1.5 flex items-center justify-center shadow-sm shrink-0 overflow-hidden">
+            <div className="flex items-center gap-3 bg-base w-fit sm:pr-4">
+              <div className="w-11 h-11 rounded-full bg-white crest-frame border-2 border-slate-300 p-1.5 flex items-center justify-center shadow-sm shrink-0 overflow-hidden">
                 {stPeters.logo ? (
                   <Image
                     src={stPeters.logo}
@@ -226,9 +226,9 @@ export function EducationSection() {
             </div>
 
             {/* Node 2: University of Ghana */}
-            <div className="flex items-center justify-between bg-[#fbfbfe] sm:pl-2">
+            <div className="flex items-center justify-between bg-base sm:pl-2">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-full bg-white border-2 border-purple-500 p-1.5 flex items-center justify-center shadow-[0_0_16px_rgba(124,58,237,0.25)] relative shrink-0 overflow-hidden">
+                <div className="w-11 h-11 rounded-full bg-white crest-frame border-2 border-purple-500 p-1.5 flex items-center justify-center shadow-[0_0_16px_rgba(124,58,237,0.25)] relative shrink-0 overflow-hidden">
                   <span className="absolute -inset-1 rounded-full border border-purple-300 animate-pulse pointer-events-none" />
                   {uG.logo ? (
                     <Image

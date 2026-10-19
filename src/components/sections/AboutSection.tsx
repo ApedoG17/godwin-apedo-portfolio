@@ -166,7 +166,7 @@ export function AboutSection() {
             {/* Card 3: Chef Apedo Foods */}
             <div className="glass-card rounded-2xl p-5 border border-amber-200/90 hover:border-amber-300 transition-all duration-300 group shadow-sm bg-white/80">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl overflow-hidden border border-amber-200/90 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-sm bg-white p-0.5">
+                <div className="w-10 h-10 rounded-xl overflow-hidden border border-amber-200/90 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform shadow-sm bg-white crest-frame p-0.5">
                   <Image
                     src="/images/chef_apedo_icon.png"
                     alt="Chef Apedo Foods"

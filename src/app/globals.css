@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* === Core Light Palette === */
   --color-base: #fbfbfe;
@@ -321,4 +323,445 @@ body::after {
 .intro-seen #portfolio-intro-overlay {
   display: none !important;
 }
+
+/* ==========================================================================
+   DARK THEME SYSTEM (.dark)
+   Preserves 100% of the light mode baseline when .dark is NOT present.
+   Activated via <html class="dark">.
+   ========================================================================== */
+
+html.dark {
+  color-scheme: dark;
+  background-color: #08090c;
+  color: #f8fafc;
+}
+
+html.dark body {
+  background-color: #08090c;
+  color: #f8fafc;
+}
+
+/* Global ambient moody glows in dark mode */
+html.dark body::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124, 58, 237, 0.18) 0%,
+    rgba(139, 92, 246, 0.08) 45%,
+    transparent 70%
+  );
+}
+
+html.dark body::after {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(59, 130, 246, 0.14) 0%,
+    rgba(99, 102, 241, 0.06) 45%,
+    transparent 65%
+  );
+}
+
+/* Dark mode selection */
+html.dark ::selection {
+  background-color: rgba(168, 85, 247, 0.35);
+  color: #f3e8ff;
+}
+
+/* Dark mode scrollbars */
+html.dark ::-webkit-scrollbar-track {
+  background: #08090c;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.45);
+}
+
+/* Section divider in dark mode */
+html.dark .section-divider {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Crisp text contrast in dark mode */
+html.dark .text-gradient-white {
+  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.dark .text-gradient-teal {
+  background: linear-gradient(135deg, #c084fc 0%, #818cf8 50%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+html.dark .text-gradient-accent {
+  background: linear-gradient(135deg, #c084fc 0%, #60a5fa 55%, #e879f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Text color adaptations */
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-content-primary {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-700,
+html.dark .text-slate-600,
+html.dark .text-content-secondary {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-500,
+html.dark .text-content-muted {
+  color: #94a3b8 !important;
+}
+
+html.dark .text-slate-400 {
+  color: #64748b !important;
+}
+
+html.dark strong.text-slate-900,
+html.dark strong {
+  color: #ffffff !important;
+}
+
+/* Vibrant accents on dark canvas */
+html.dark .text-purple-600,
+html.dark .text-purple-700 {
+  color: #c084fc !important;
+}
+
+html.dark .text-blue-600,
+html.dark .text-blue-700 {
+  color: #60a5fa !important;
+}
+
+html.dark .text-amber-600,
+html.dark .text-amber-700,
+html.dark .text-amber-800 {
+  color: #fbbf24 !important;
+}
+
+html.dark .text-indigo-600,
+html.dark .text-indigo-700 {
+  color: #818cf8 !important;
+}
+
+/* Glassmorphism surfaces in dark mode */
+html.dark .glass-panel {
+  background: rgba(16, 20, 31, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.5), 0 0 30px -5px rgba(124, 58, 237, 0.08);
+}
+
+html.dark .glass-card {
+  background: rgba(20, 24, 38, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4), 0 0 20px -4px rgba(124, 58, 237, 0.05);
+}
+
+html.dark .glass-card:hover {
+  border-color: rgba(168, 85, 247, 0.45);
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.6), 0 0 28px -4px rgba(139, 92, 246, 0.22);
+}
+
+html.dark .glass-pill {
+  background: rgba(16, 20, 31, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.5), 0 0 20px rgba(124, 58, 237, 0.12);
+}
+
+/* Card & container backgrounds in dark mode */
+html.dark .bg-base,
+html.dark .bg-\[\#fbfbfe\] {
+  background-color: #08090c !important;
+}
+
+html.dark .crest-frame {
+  background-color: #ffffff !important;
+}
+
+html.dark .bg-white:not(.crest-frame),
+html.dark .bg-white\/95,
+html.dark .bg-white\/90,
+html.dark .bg-white\/85,
+html.dark .bg-white\/80,
+html.dark .bg-white\/75,
+html.dark .bg-white\/70,
+html.dark .bg-white\/60,
+html.dark .bg-white\/50 {
+  background-color: rgba(22, 27, 42, 0.82) !important;
+}
+
+/* Semi-transparent slate fills */
+html.dark .bg-slate-50,
+html.dark .bg-slate-50\/90,
+html.dark .bg-slate-50\/70,
+html.dark .bg-slate-100,
+html.dark .bg-slate-100\/90,
+html.dark .bg-slate-100\/80,
+html.dark .bg-slate-100\/70,
+html.dark .bg-slate-100\/60,
+html.dark .bg-slate-200,
+html.dark .bg-slate-200\/90,
+html.dark .bg-slate-200\/80,
+html.dark .bg-slate-200\/60 {
+  background-color: rgba(255, 255, 255, 0.07) !important;
+}
+
+/* Project tab bar & active pill styling in dark mode */
+html.dark .project-tabs-container {
+  background-color: rgba(12, 16, 26, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.dark .project-tab-active {
+  background-color: rgba(168, 85, 247, 0.22) !important;
+  border-color: rgba(168, 85, 247, 0.45) !important;
+  box-shadow: 0 0 16px rgba(168, 85, 247, 0.25) !important;
+}
+
+html.dark .project-tab-active.border-blue-200,
+html.dark .border-blue-200.project-tab-active {
+  background-color: rgba(59, 130, 246, 0.22) !important;
+  border-color: rgba(59, 130, 246, 0.45) !important;
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.25) !important;
+}
+
+/* Ecosystem architecture inactive buttons */
+html.dark .ecosystem-inactive-btn {
+  background-color: rgba(20, 24, 38, 0.75) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  color: #cbd5e1 !important;
+}
+
+html.dark .ecosystem-inactive-btn:hover {
+  background-color: rgba(30, 36, 56, 0.9) !important;
+  border-color: rgba(168, 85, 247, 0.4) !important;
+  color: #ffffff !important;
+}
+
+/* Secondary & copy buttons */
+html.dark .copy-btn-secondary {
+  background-color: rgba(22, 27, 42, 0.85) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+}
+
+html.dark .copy-btn-secondary:hover {
+  background-color: rgba(32, 38, 58, 0.95) !important;
+  border-color: rgba(168, 85, 247, 0.45) !important;
+  color: #c084fc !important;
+}
+
+html.dark .copy-btn-secondary svg {
+  color: inherit !important;
+}
+
+/* Border adaptations */
+html.dark .border-slate-200,
+html.dark .border-slate-200\/90,
+html.dark .border-slate-200\/80,
+html.dark .border-slate-200\/70,
+html.dark .border-slate-100 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .border-purple-200,
+html.dark .border-purple-200\/90,
+html.dark .border-purple-200\/80,
+html.dark .border-purple-300 {
+  border-color: rgba(168, 85, 247, 0.28) !important;
+}
+
+html.dark .border-blue-200,
+html.dark .border-blue-200\/90 {
+  border-color: rgba(59, 130, 246, 0.28) !important;
+}
+
+html.dark .border-amber-200,
+html.dark .border-amber-200\/90 {
+  border-color: rgba(245, 158, 11, 0.28) !important;
+}
+
+html.dark .border-indigo-200,
+html.dark .border-indigo-200\/90 {
+  border-color: rgba(99, 102, 241, 0.28) !important;
+}
+
+/* Light badge pills converted to moody chips */
+html.dark .bg-purple-50,
+html.dark .bg-purple-50\/70,
+html.dark .bg-purple-100,
+html.dark .bg-purple-100\/70 {
+  background-color: rgba(168, 85, 247, 0.16) !important;
+  color: #e9d5ff !important;
+  border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+html.dark .bg-blue-50,
+html.dark .bg-blue-100 {
+  background-color: rgba(59, 130, 246, 0.16) !important;
+  color: #bfdbfe !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+}
+
+html.dark .bg-amber-50,
+html.dark .bg-amber-100 {
+  background-color: rgba(245, 158, 11, 0.16) !important;
+  color: #fde68a !important;
+  border-color: rgba(245, 158, 11, 0.3) !important;
+}
+
+html.dark .bg-indigo-50,
+html.dark .bg-indigo-100 {
+  background-color: rgba(99, 102, 241, 0.16) !important;
+  color: #c7d2fe !important;
+  border-color: rgba(99, 102, 241, 0.3) !important;
+}
+
+/* Horizontal gradient callout banners */
+html.dark .from-purple-50\/60,
+html.dark .from-purple-50,
+html.dark .from-purple-50\/40 {
+  --tw-gradient-from: rgba(124, 58, 237, 0.15) !important;
+}
+html.dark .via-purple-50\/40,
+html.dark .via-purple-50\/20 {
+  --tw-gradient-via: rgba(124, 58, 237, 0.08) !important;
+}
+html.dark .to-white\/80,
+html.dark .to-white\/60 {
+  --tw-gradient-to: rgba(20, 24, 38, 0.6) !important;
+}
+
+/* Tech badges */
+html.dark .tech-badge {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #e2e8f0 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* High-contrast inverted primary CTAs */
+html.dark .bg-slate-900 {
+  background-color: #ffffff !important;
+  color: #08090c !important;
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.25) !important;
+}
+
+html.dark .bg-slate-900:hover {
+  background-color: #f1f5f9 !important;
+  color: #08090c !important;
+  box-shadow: 0 6px 24px rgba(168, 85, 247, 0.4) !important;
+}
+
+html.dark .bg-slate-900 svg {
+  color: #08090c !important;
+}
+
+/* Form elements in dark mode */
+html.dark input,
+html.dark textarea,
+html.dark select {
+  background-color: rgba(13, 16, 26, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: #f8fafc !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: #a855f7 !important;
+  box-shadow: 0 0 0 1px #a855f7 !important;
+}
+
+html.dark select option {
+  background-color: #0f131f !important;
+  color: #f8fafc !important;
+}
+
+/* Hero lower torso mist & cloud dissolve adapted for deep charcoal canvas */
+html.dark .hero-torso-mist {
+  background: radial-gradient(
+    ellipse 80% 55% at 50% 90%,
+    #08090c 45%,
+    rgba(8, 9, 12, 0.95) 60%,
+    rgba(20, 24, 38, 0.7) 80%,
+    transparent 100%
+  ) !important;
+}
+
+html.dark .hero-cloud-puff-left {
+  background: radial-gradient(
+    circle at center,
+    #08090c 40%,
+    rgba(20, 24, 38, 0.85) 68%,
+    transparent 100%
+  ) !important;
+  opacity: 0.9 !important;
+}
+
+html.dark .hero-cloud-puff-right {
+  background: radial-gradient(
+    circle at center,
+    #08090c 45%,
+    rgba(20, 24, 38, 0.85) 68%,
+    transparent 100%
+  ) !important;
+  opacity: 0.9 !important;
+}
+
+html.dark .hero-cloud-roll {
+  background: radial-gradient(
+    ellipse at center,
+    #08090c 55%,
+    rgba(8, 9, 12, 0.95) 78%,
+    transparent 100%
+  ) !important;
+  opacity: 0.95 !important;
+}
+
+/* Ambient background blobs adapted for dark mode */
+html.dark .ambient-blob-teal {
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.22) 0%, rgba(8, 9, 12, 0) 70%);
+}
+
+html.dark .ambient-blob-blue {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(8, 9, 12, 0) 70%);
+}
+
+html.dark .ambient-blob-violet {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, rgba(8, 9, 12, 0) 70%);
+}
+
+/* Footer in dark mode */
+html.dark footer {
+  background-color: rgba(10, 12, 18, 0.85) !important;
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Mobile drawer in dark mode */
+html.dark #mobile-navigation {
+  background-color: rgba(16, 20, 31, 0.96) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6) !important;
+}
+
 

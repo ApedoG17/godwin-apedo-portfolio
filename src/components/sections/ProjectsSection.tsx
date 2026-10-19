@@ -52,7 +52,7 @@ function TechBadge({ name }: { name: string }) {
   };
   return (
     <span
-      className="inline-flex items-center font-mono text-[11px] px-2.5 py-1 rounded-lg shadow-2xs"
+      className="inline-flex items-center font-mono text-[11px] px-2.5 py-1 rounded-lg shadow-2xs tech-badge"
       style={{
         background: style.bg,
         color: style.text,
@@ -280,7 +280,7 @@ function ProjectCard({
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-slate-100/90 border border-slate-200 backdrop-blur-md">
+                <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-slate-100/90 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 backdrop-blur-md project-tabs-container">
                   {subsystems.map((sub) => {
                     const isActive = activeSubsystemId === sub.id;
                     const Icon = getSubsystemIcon(sub.id);
@@ -295,18 +295,18 @@ function ProjectCard({
                         className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
                           isActive
                             ? isTeal
-                              ? "text-purple-700 font-semibold shadow-xs"
-                              : "text-blue-700 font-semibold shadow-xs"
-                            : "text-slate-600 hover:text-slate-900"
+                              ? "text-purple-700 dark:text-purple-300 font-semibold shadow-xs"
+                              : "text-blue-700 dark:text-blue-300 font-semibold shadow-xs"
+                            : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                         }`}
                       >
                         {isActive && (
                           <motion.div
                             layoutId={`active-tab-${project.slug}`}
-                            className={`absolute inset-0 rounded-lg ${
+                            className={`absolute inset-0 rounded-lg project-tab-active ${
                               isTeal
-                                ? "bg-white border border-purple-200 shadow-xs"
-                                : "bg-white border border-blue-200 shadow-xs"
+                                ? "bg-white dark:bg-purple-500/20 border border-purple-200 dark:border-purple-400/30 shadow-xs"
+                                : "bg-white dark:bg-blue-500/20 border border-blue-200 dark:border-blue-400/30 shadow-xs"
                             }`}
                             transition={{ type: "spring", stiffness: 400, damping: 32 }}
                           />
@@ -314,7 +314,7 @@ function ProjectCard({
                         <span className="relative z-10 flex items-center gap-1.5">
                           <Icon className="w-3.5 h-3.5" />
                           <span>{sub.name}</span>
-                          <span className="text-[10px] opacity-75 font-normal px-1 py-0.2 rounded bg-slate-200/60 border border-slate-300/40">
+                          <span className="text-[10px] opacity-75 font-normal px-1 py-0.2 rounded bg-slate-200/60 dark:bg-white/10 border border-slate-300/40 dark:border-white/10 text-slate-600 dark:text-slate-300">
                             {sub.screenshots.length}
                           </span>
                         </span>
@@ -334,8 +334,8 @@ function ProjectCard({
 
             {/* Sub-view toggle when subsystem has 3 screenshots */}
             {activeSubsystem?.screenshots && activeSubsystem.screenshots.length > 2 && (
-              <div className="flex items-center gap-1.5 p-1 rounded-lg bg-slate-100 border border-slate-200 text-[11px] font-mono">
-                <span className="text-slate-500 px-2 text-[10px]">Views:</span>
+              <div className="flex items-center gap-1.5 p-1 rounded-lg bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 text-[11px] font-mono">
+                <span className="text-slate-500 dark:text-slate-400 px-2 text-[10px]">Views:</span>
                 {activeSubsystem.screenshots.map((s, idx) => (
                   <button
                     key={idx}
@@ -346,7 +346,7 @@ function ProjectCard({
                         ? isTeal
                           ? "bg-purple-600 text-white font-bold"
                           : "bg-blue-600 text-white font-bold"
-                        : "text-slate-600 hover:text-slate-900"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                     }`}
                   >
                     {s.label.split("&")[0].trim()}
@@ -420,7 +420,7 @@ function ProjectCard({
             <div className="space-y-4">
               <div className="flex items-start sm:items-center gap-3.5">
                 {project.slug === "chef-apedo-foods" && (
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shrink-0 border border-amber-200/90 bg-white shadow-xs p-1 mt-0.5 sm:mt-0">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shrink-0 border border-amber-200/90 bg-white crest-frame shadow-xs p-1 mt-0.5 sm:mt-0">
                     <Image
                       src="/images/chef_apedo_icon.png"
                       alt="Chef Apedo Foods"
@@ -460,13 +460,13 @@ function ProjectCard({
               </p>
 
               {/* Architectural Ecosystem Scope Callout */}
-              <div className="p-3.5 rounded-2xl glass-card border border-slate-200 bg-slate-50/70 space-y-2">
+              <div className="p-3.5 rounded-2xl glass-card border border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.04] space-y-2">
                 <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-purple-700 font-semibold uppercase tracking-wider flex items-center gap-1.5">
+                  <span className="text-purple-700 dark:text-purple-300 font-semibold uppercase tracking-wider flex items-center gap-1.5">
                     <Layers className="w-3.5 h-3.5" />
                     Ecosystem Architecture
                   </span>
-                  <span className="text-slate-500 text-[11px]">
+                  <span className="text-slate-500 dark:text-slate-400 text-[11px]">
                     {isTeal ? "3 Interconnected Roles" : "2 Management Tiers"}
                   </span>
                 </div>
@@ -479,13 +479,13 @@ function ProjectCard({
                       className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-mono cursor-pointer transition-all ${
                         activeSubsystemId === s.id
                           ? isTeal
-                            ? "bg-purple-100 text-purple-700 border border-purple-300 font-semibold"
-                            : "bg-blue-100 text-blue-700 border border-blue-300 font-semibold"
-                          : "bg-white text-slate-600 border border-slate-200 hover:border-slate-300"
+                            ? "bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-200 border border-purple-300 dark:border-purple-400/40 font-semibold"
+                            : "bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-200 border border-blue-300 dark:border-blue-400/40 font-semibold"
+                          : "bg-white dark:bg-white/[0.06] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-purple-400/30 dark:hover:text-white ecosystem-inactive-btn"
                       }`}
                     >
                       <span className="font-medium">{s.name}</span>
-                      <span className="text-[10px] text-slate-500">({s.badge})</span>
+                      <span className="text-[10px] text-slate-500 dark:text-slate-400">({s.badge})</span>
                     </button>
                   ))}
                 </div>
@@ -635,7 +635,7 @@ export function ProjectsSection() {
             href="https://github.com/ApedoG17"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-mono text-slate-700 hover:text-purple-700 transition-colors glass-card px-4 py-2 rounded-full self-start sm:self-auto border-slate-200 hover:border-purple-300 bg-white/80 shadow-2xs group"
+            className="inline-flex items-center gap-2 text-xs font-mono text-slate-700 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-colors glass-card px-4 py-2 rounded-full self-start sm:self-auto border-slate-200 dark:border-white/10 hover:border-purple-300 bg-white/80 dark:bg-white/[0.06] shadow-2xs group"
           >
             <span>Explore all on GitHub</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

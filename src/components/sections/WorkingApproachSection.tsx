@@ -206,7 +206,7 @@ export function WorkingApproachSection() {
 
           <a
             href="#work"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-slate-800 hover:text-purple-700 transition-all duration-200 glass-card border border-slate-200 hover:border-purple-300 bg-white/90 shadow-2xs group shrink-0"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-all duration-200 glass-card border border-slate-200 dark:border-white/10 hover:border-purple-300 bg-white/90 dark:bg-white/[0.06] shadow-2xs group shrink-0"
           >
             <span>Explore Featured Projects</span>
             <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-purple-600" />

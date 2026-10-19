@@ -15,6 +15,7 @@ import {
 } from "@/lib/motion";
 import { ScrollProgress } from "@/components/core/scroll-progress";
 import { Dock, DockItem } from "@/components/core/dock";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 interface NavItem {
   label: string;
@@ -178,8 +179,9 @@ export function Navbar() {
           })}
         </Dock>
 
-        {/* Desktop CTA Button — Dark, near-black primary button */}
+        {/* Desktop CTA & Theme Toggle */}
         <div className="hidden sm:flex items-center gap-2.5">
+          <ThemeToggle id="theme-toggle-desktop" />
           <Link
             href={isContactPage ? "#contact-form" : "/contact"}
             className="inline-flex items-center gap-1.5 text-xs font-bold px-4 py-2 rounded-full transition-all duration-200 hover:scale-105 active:scale-95 bg-slate-900 hover:bg-slate-800 text-white shadow-[0_2px_12px_rgba(15,23,42,0.18)] hover:shadow-[0_4px_16px_rgba(124,58,237,0.25)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
@@ -189,17 +191,20 @@ export function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Toggle Button */}
-        <button
-          type="button"
-          onClick={toggleMenu}
-          aria-expanded={isOpen}
-          aria-controls="mobile-navigation"
-          aria-label={isOpen ? "Close menu" : "Open navigation menu"}
-          className="md:hidden flex items-center justify-center h-8 w-8 rounded-full border border-slate-200/90 text-slate-700 hover:text-purple-600 hover:border-purple-300 bg-white/80 transition-colors cursor-pointer"
-        >
-          {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
+        {/* Mobile Actions: Theme Toggle + Menu Button */}
+        <div className="flex sm:hidden items-center gap-2">
+          <ThemeToggle id="theme-toggle-mobile" />
+          <button
+            type="button"
+            onClick={toggleMenu}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isOpen ? "Close menu" : "Open navigation menu"}
+            className="flex items-center justify-center h-8 w-8 rounded-full border border-slate-200/90 text-slate-700 hover:text-purple-600 hover:border-purple-300 bg-white/80 transition-colors cursor-pointer"
+          >
+            {isOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+          </button>
+        </div>
 
         {/* Luminous scroll progress indicator nestled within the bottom curvature of the navbar */}
         <ScrollProgress className="absolute bottom-0 inset-x-6 h-[2.5px] rounded-full opacity-100 bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-600 shadow-[0_0_8px_rgba(139,92,246,0.4)]" />
@@ -253,6 +258,7 @@ export function Navbar() {
             })}
 
             <div className="pt-3 mt-1 border-t border-slate-200/80 flex flex-col gap-2">
+              <ThemeToggle showLabel />
               <Link
                 href={isContactPage ? "#contact-form" : "/contact"}
                 onClick={closeMenu}

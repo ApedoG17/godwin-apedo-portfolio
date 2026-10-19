@@ -63,11 +63,11 @@ export function CopyTextButton({
     primary:
       "bg-slate-900 text-white font-bold hover:bg-slate-800 shadow-sm",
     secondary:
-      "bg-white text-slate-700 hover:text-purple-700 hover:bg-purple-50/60 border border-slate-200 hover:border-purple-300 shadow-2xs",
+      "bg-white dark:bg-white/[0.08] text-slate-700 dark:text-slate-100 hover:text-purple-700 dark:hover:text-purple-300 hover:bg-purple-50/60 dark:hover:bg-white/[0.14] border border-slate-200 dark:border-white/12 hover:border-purple-300 dark:hover:border-purple-400/40 shadow-2xs copy-btn-secondary",
     ghost:
       "bg-transparent text-slate-500 hover:text-purple-700 hover:bg-purple-50/60",
     pill:
-      "bg-white/90 text-slate-700 hover:text-purple-700 border border-slate-200 rounded-full px-3 py-1 shadow-2xs",
+      "bg-white/90 dark:bg-white/[0.08] text-slate-700 dark:text-slate-100 hover:text-purple-700 dark:hover:text-purple-300 border border-slate-200 dark:border-white/12 rounded-full px-3 py-1 shadow-2xs copy-btn-secondary",
   };
 
   const sizeStyles = {
