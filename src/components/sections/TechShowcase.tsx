@@ -274,7 +274,7 @@ export function TechShowcase() {
               type="button"
               onClick={() => setIsPaused((prev) => !prev)}
               aria-label={isPaused ? "Resume technology slider animations" : "Pause technology slider animations"}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-medium transition-all duration-200 border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 hover:text-purple-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 cursor-pointer shrink-0 self-start sm:self-auto shadow-sm"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-medium transition-all duration-200 border border-purple-200 dark:border-purple-400/30 bg-purple-50 dark:bg-purple-500/10 hover:bg-purple-100 dark:hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 cursor-pointer shrink-0 self-start sm:self-auto shadow-sm"
             >
               {isPaused ? (
                 <>
@@ -337,7 +337,7 @@ export function TechShowcase() {
                     <div
                       key={tech.name}
                       tabIndex={0}
-                      className="glass-card rounded-2xl p-4 sm:p-4.5 flex items-center gap-3.5 border border-slate-200/90 hover:border-purple-300 focus-visible:border-purple-500 focus-visible:outline-none transition-all duration-300 w-[215px] sm:w-[235px] shrink-0 group shadow-sm bg-white/90 cursor-default"
+                      className="glass-card rounded-2xl p-4 sm:p-4.5 flex items-center gap-3.5 border border-slate-200/90 hover:border-purple-300 focus-visible:border-purple-500 focus-visible:outline-none transition-all duration-300 w-[215px] sm:w-[235px] shrink-0 group shadow-sm bg-white/90 cursor-grab active:cursor-grabbing"
                     >
                       <div
                         className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105 duration-200 overflow-hidden relative shadow-xs"
