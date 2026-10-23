@@ -277,4 +277,100 @@ export const PROJECTS: Project[] = [
     isProvisional: false,
     accentColor: "blue",
   },
+  {
+    slug: "davcie-foundation",
+    title: "Davcie Foundation",
+    subtitle: "Nonprofit Web Platform & Paediatric Health Hub",
+    tagline: "Modern non-profit platform, interactive paediatric diabetes education suite & administrative portal",
+    shortDescription:
+      "A modern, accessibility-focused non-profit web platform and health hub supporting children and teenagers living with diabetes, featuring interactive learning games, Paystack donation workflows, and an authenticated administrative portal.",
+    category: "Nonprofit Web Platform",
+    scope: "Nonprofit Client Collaboration",
+    role: "Full-Stack Developer",
+    contributionSummary:
+      "Developed as a collaborative project working closely with the Tech Lead. Godwin served as Full-Stack Developer responsible for the visual design, interactive diabetes education hub, emblem reassembly animation, Supabase backend form handling, and administrative management workflows, while the Tech Lead authored the foundation's About page.",
+    individualContributions: [
+      "Engineered visual design direction, typography hierarchy, and WCAG AA contrast compliance across light and dark responsive layouts",
+      "Built the interactive education hub with 3D perspective flip cards, a binary Myth-or-Fact game, and a 5-question randomised knowledge quiz",
+      "Constructed animated entrance sequence with 14 scattered emblem puzzle pieces, Framer Motion physics, Web Speech API narration, and reduced-motion bypass",
+      "Architected dual-layer anti-spam submission pipeline with invisible honeypots and 3-second timing gates committing directly to Supabase",
+      "Built the administrative management portal with Next.js 16 proxy request gating, real-time database metric counters, and formula injection-proof CSV export",
+      "Implemented event scheduling management with two-way Africa/Accra timezone normalisation and Next.js 16 component-level cache tag revalidation",
+      "Integrated Paystack multi-currency donation checkout handling GHS, USD, and NGN with server-side transaction verification",
+    ],
+    problemStatement:
+      "Young people diagnosed with diabetes and their families in West Africa frequently confront severe societal stigma, misinformation, and delayed diagnoses due to a lack of approachable, engaging health resources.",
+    architectureOverview:
+      "Full-stack Next.js 16 App Router application powered by React 19, Turbopack, and Tailwind CSS v4, combining client-side interactive game state with server-authoritative Supabase mutations, Next.js 16 proxy request interception, and component-level caching.",
+    techStack: {
+      frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+      backend: ["Supabase", "Server Actions", "Node.js"],
+      database: ["PostgreSQL", "Supabase Auth"],
+      tooling: ["Git", "GitHub", "Vercel", "Paystack"],
+    },
+    links: {
+      github: "https://github.com/ApedoG17/davcie-foundation",
+    },
+    images: [
+      "/images/davcie/davcie-logo.jpg",
+      "/images/davcie/davcie-emblem.png",
+    ],
+    subsystems: [
+      {
+        id: "education",
+        name: "Interactive Education",
+        badge: "Health Hub",
+        description: "Engaging educational experience featuring 3D flip cards, binary classification games, and dynamic randomised quizzes.",
+        screenshots: [
+          {
+            src: "/images/davcie/davcie-logo.jpg",
+            alt: "Davcie Foundation Official Brand & Purpose",
+            label: "Foundation Identity & Mission",
+            route: "davciefoundation.org",
+            caption: "Empowering Young Lives Beyond Diabetes",
+          },
+          {
+            src: "/images/davcie/education.jpg",
+            alt: "Davcie Foundation Diabetes Education and Workshop",
+            label: "Paediatric Diabetes Education",
+            route: "davciefoundation.org/learn",
+            caption: "Clinical myth-busting & warning sign identification",
+          },
+        ],
+      },
+      {
+        id: "motion",
+        name: "Intro Motion & Narration",
+        badge: "Brand Sequence",
+        description: "14-piece vector emblem assembly powered by Framer Motion, synchronized with Web Speech API audio narration and pre-hydration caching.",
+        screenshots: [
+          {
+            src: "/images/davcie/davcie-emblem.png",
+            alt: "Davcie Foundation Emblem Reassembly",
+            label: "Emblem Reassembly Sequence",
+            route: "davciefoundation.org/?replay=1",
+            caption: "Scattered vector pieces reassembling via motion physics",
+          },
+        ],
+      },
+      {
+        id: "admin",
+        name: "Operations Admin",
+        badge: "Management CMS",
+        description: "Protected backoffice portal featuring real-time database counters, event scheduling with Africa/Accra timezone conversion, and formula injection-safe CSV export.",
+        screenshots: [
+          {
+            src: "/images/davcie/support.jpg",
+            alt: "Davcie Foundation Community Support & Volunteer Coordination",
+            label: "Volunteer & Event Backoffice",
+            route: "davciefoundation.org/admin",
+            caption: "Operations overview, volunteer applications & event management",
+          },
+        ],
+      },
+    ],
+    isFeatured: true,
+    isProvisional: false,
+    accentColor: "blue",
+  },
 ];

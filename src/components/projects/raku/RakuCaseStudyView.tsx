@@ -101,7 +101,7 @@ export function RakuCaseStudyView() {
         </Link>
 
         <span className="text-xs font-mono text-content-muted">
-          Project 03 of 03
+          Project 03 of 04
         </span>
       </div>
 
@@ -900,7 +900,7 @@ app.post('/api/auth/register', requireAuth, async (req, res) => {
         </div>
 
         <div className="glass-panel rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 dark:border-white/10 bg-white/85 dark:bg-slate-900/60 space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="space-y-3">
               <div className="relative rounded-2xl overflow-hidden border border-blue-200/80 dark:border-blue-400/20 bg-slate-950 aspect-16/10 shadow-md">
                 <Image
@@ -1315,6 +1315,31 @@ app.post('/api/auth/register', requireAuth, async (req, res) => {
               <Link
                 href="/projects/chef-apedo-foods"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-purple-600 hover:text-purple-700 dark:text-purple-400 group"
+              >
+                <span>Read Case Study</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+          <div className="glass-panel rounded-2xl p-6 border border-blue-200/90 dark:border-blue-400/20 bg-white/80 dark:bg-slate-900/60 flex flex-col justify-between space-y-4">
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 dark:text-blue-300 font-bold">
+                Project 04 &bull; Nonprofit Platform &amp; Health Hub
+              </span>
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white">
+                Davcie Foundation
+              </h4>
+              <p className="text-xs text-content-secondary dark:text-slate-400 leading-relaxed">
+                Paediatric diabetes health education, emblem motion physics &amp; authenticated admin portal.
+              </p>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                &bull; Case Study Available
+              </span>
+              <Link
+                href="/projects/davcie-foundation"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 group"
               >
                 <span>Read Case Study</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

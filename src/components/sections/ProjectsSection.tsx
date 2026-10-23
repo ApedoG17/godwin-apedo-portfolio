@@ -43,6 +43,12 @@ const TECH_TAGS: Record<string, { bg: string; text: string; border: string }> = 
   "Git": { bg: "rgba(240,80,50,0.08)", text: "#ea580c", border: "rgba(240,80,50,0.2)" },
   "GitHub": { bg: "rgba(15,23,42,0.06)", text: "#0f172a", border: "rgba(15,23,42,0.12)" },
   "Vercel": { bg: "rgba(15,23,42,0.06)", text: "#0f172a", border: "rgba(15,23,42,0.12)" },
+  "Framer Motion": { bg: "rgba(236,72,153,0.08)", text: "#db2777", border: "rgba(236,72,153,0.2)" },
+  "Server Actions": { bg: "rgba(15,23,42,0.06)", text: "#0f172a", border: "rgba(15,23,42,0.12)" },
+  "Node.js": { bg: "rgba(34,197,94,0.08)", text: "#16a34a", border: "rgba(34,197,94,0.2)" },
+  "PostgreSQL": { bg: "rgba(2,132,199,0.08)", text: "#0284c7", border: "rgba(2,132,199,0.2)" },
+  "Supabase Auth": { bg: "rgba(16,185,129,0.08)", text: "#059669", border: "rgba(16,185,129,0.2)" },
+  "Paystack": { bg: "rgba(14,165,233,0.08)", text: "#0284c7", border: "rgba(14,165,233,0.2)" },
 };
 
 function TechBadge({ name }: { name: string }) {
@@ -487,6 +493,11 @@ function CompanionProjectCard({
                 <Lock className="w-3 h-3 text-slate-400" />
                 Coursework
               </span>
+            ) : project.slug === "davcie-foundation" ? (
+              <span className="text-[11px] font-mono text-blue-700 dark:text-blue-300 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
+                Nonprofit Collaboration
+              </span>
             ) : (
               <span className="text-[11px] font-mono text-purple-700 dark:text-purple-300 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
@@ -505,6 +516,7 @@ export function ProjectsSection() {
   const mensah = PROJECTS.find((p) => p.slug === "mensah") ?? PROJECTS[0];
   const chefApedo = PROJECTS.find((p) => p.slug === "chef-apedo-foods") ?? PROJECTS[1];
   const raku = PROJECTS.find((p) => p.slug === "raku-vehicle-rental") ?? PROJECTS[2];
+  const davcie = PROJECTS.find((p) => p.slug === "davcie-foundation") ?? PROJECTS[3];
 
   return (
     <section
@@ -553,7 +565,7 @@ export function ProjectsSection() {
         <FeaturedProjectCard project={mensah} />
 
         {/* ── 2. COMPANION GRID: CHEF APEDO FOODS & RAKU RENTALS ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
           <CompanionProjectCard
             project={chefApedo}
             indexNumber="02"
@@ -574,6 +586,17 @@ export function ProjectsSection() {
             iconBg="#d5001c"
             accentColor="blue"
             caseStudyHref="/projects/raku"
+          />
+
+          <CompanionProjectCard
+            project={davcie}
+            indexNumber="04"
+            categoryLabel="NONPROFIT WEB PLATFORM"
+            roleBadge="Full-Stack Developer"
+            iconSrc="/images/davcie/davcie-emblem.png"
+            iconBg="#fdfaf0"
+            accentColor="blue"
+            caseStudyHref="/projects/davcie-foundation"
           />
         </div>
 

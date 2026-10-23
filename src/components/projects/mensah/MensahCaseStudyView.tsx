@@ -103,7 +103,7 @@ export function MensahCaseStudyView() {
         </Link>
 
         <span className="text-xs font-mono text-content-muted">
-          Project 01 of 03
+          Project 01 of 04
         </span>
       </div>
 
@@ -726,7 +726,7 @@ window.open(whatsappUrl, '_blank');`}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="glass-panel rounded-2xl p-6 border border-slate-200/90 dark:border-white/10 bg-white/80 dark:bg-slate-900/60 space-y-3">
             <h3 className="font-bold text-base text-slate-900 dark:text-white flex items-center gap-2">
               <Cpu className="w-4 h-4 text-amber-600 dark:text-amber-400" />
@@ -1019,6 +1019,31 @@ window.open(whatsappUrl, '_blank');`}
               </span>
               <Link
                 href="/projects/raku"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 group"
+              >
+                <span>Read Case Study</span>
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </div>
+          <div className="glass-panel rounded-2xl p-6 border border-blue-200/90 dark:border-blue-400/20 bg-white/80 dark:bg-slate-900/60 flex flex-col justify-between space-y-4">
+            <div className="space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-blue-700 dark:text-blue-300 font-bold">
+                Project 04 &bull; Nonprofit Platform &amp; Health Hub
+              </span>
+              <h4 className="text-lg font-bold text-slate-900 dark:text-white">
+                Davcie Foundation
+              </h4>
+              <p className="text-xs text-content-secondary dark:text-slate-400 leading-relaxed">
+                Paediatric diabetes health education, emblem motion physics &amp; authenticated admin portal.
+              </p>
+            </div>
+            <div className="flex items-center justify-between pt-2">
+              <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                &bull; Case Study Available
+              </span>
+              <Link
+                href="/projects/davcie-foundation"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 dark:text-blue-400 group"
               >
                 <span>Read Case Study</span>

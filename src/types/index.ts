@@ -3,13 +3,15 @@ export type ProjectScope =
   | "Solo Product & Development"
   | "University Group Project"
   | "Hackathon Project"
-  | "Solo Frontend Engineer & Designer";
+  | "Solo Frontend Engineer & Designer"
+  | "Nonprofit Client Collaboration";
 
 export type ProjectCategory = 
   | "Commercial Platform" 
   | "Academic Software Engineering" 
   | "Tooling & Systems"
-  | "Luxury E-Commerce & Logistics";
+  | "Luxury E-Commerce & Logistics"
+  | "Nonprofit Web Platform";
 
 export interface ProjectTechStack {
   frontend?: string[];

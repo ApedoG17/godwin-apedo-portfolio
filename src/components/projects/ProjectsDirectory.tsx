@@ -51,6 +51,11 @@ const TECH_TAGS: Record<string, { bg: string; text: string; border: string }> = 
   "Vercel": { bg: "rgba(15,23,42,0.06)", text: "#0f172a", border: "rgba(15,23,42,0.12)" },
   "Express": { bg: "rgba(100,116,139,0.08)", text: "#475569", border: "rgba(100,116,139,0.2)" },
   "PostgreSQL": { bg: "rgba(2,132,199,0.08)", text: "#0284c7", border: "rgba(2,132,199,0.2)" },
+  "Framer Motion": { bg: "rgba(236,72,153,0.08)", text: "#db2777", border: "rgba(236,72,153,0.2)" },
+  "Server Actions": { bg: "rgba(15,23,42,0.06)", text: "#0f172a", border: "rgba(15,23,42,0.12)" },
+  "Node.js": { bg: "rgba(34,197,94,0.08)", text: "#16a34a", border: "rgba(34,197,94,0.2)" },
+  "Supabase Auth": { bg: "rgba(16,185,129,0.08)", text: "#059669", border: "rgba(16,185,129,0.2)" },
+  "Paystack": { bg: "rgba(14,165,233,0.08)", text: "#0284c7", border: "rgba(14,165,233,0.2)" },
 };
 
 function TechBadge({ name }: { name: string }) {
@@ -443,7 +448,11 @@ function CompanionShowcaseCard({
           {/* Context Notice / Scope Clarity */}
           {project.slug === "raku-vehicle-rental" ? (
             <div className="px-3 py-2 rounded-xl bg-blue-50/70 dark:bg-blue-900/10 border border-blue-200/80 dark:border-blue-500/20 text-[11px] font-mono text-blue-800 dark:text-blue-300">
-              <span className="font-semibold">University Group Project:</span> DCIT 208 Software Engineering • Role: Product/Client Manager &amp; Backend Concurrency Contributor
+              <span className="font-semibold">University Group Project:</span> DCIT 208 Software Engineering &bull; Role: Product/Client Manager &amp; Backend Concurrency Contributor
+            </div>
+          ) : project.slug === "davcie-foundation" ? (
+            <div className="px-3 py-2 rounded-xl bg-blue-50/70 dark:bg-blue-900/10 border border-blue-200/80 dark:border-blue-500/20 text-[11px] font-mono text-blue-800 dark:text-blue-300">
+              <span className="font-semibold">Nonprofit Collaboration:</span> Paediatric diabetes health education, emblem motion physics &amp; backoffice admin
             </div>
           ) : (
             <div className="px-3 py-2 rounded-xl bg-purple-50/70 dark:bg-purple-900/10 border border-purple-200/80 dark:border-purple-500/20 text-[11px] font-mono text-purple-800 dark:text-purple-300">
@@ -553,6 +562,7 @@ export function ProjectsDirectory({ projects }: { projects: Project[] }) {
       { id: "Luxury E-Commerce & Logistics", label: "Luxury & Logistics", count: projects.filter(p => p.category === "Luxury E-Commerce & Logistics").length },
       { id: "Commercial Platform", label: "Commercial Platforms", count: projects.filter(p => p.category === "Commercial Platform").length },
       { id: "Academic Software Engineering", label: "Software Engineering", count: projects.filter(p => p.category === "Academic Software Engineering").length },
+      { id: "Nonprofit Web Platform", label: "Nonprofit Platform", count: projects.filter(p => p.category === "Nonprofit Web Platform").length },
     ].filter(item => item.id === "All" || item.count > 0);
   }, [projects]);
 
@@ -565,6 +575,7 @@ export function ProjectsDirectory({ projects }: { projects: Project[] }) {
   const mensahProject = projects.find((p) => p.slug === "mensah");
   const chefApedoProject = projects.find((p) => p.slug === "chef-apedo-foods");
   const rakuProject = projects.find((p) => p.slug === "raku-vehicle-rental");
+  const davcieProject = projects.find((p) => p.slug === "davcie-foundation");
 
   // In default "All" view, present the curated editorial layout: 01 Flagship on top, 02 & 03 side-by-side
   const isDefaultView = selectedCategory === "All";
@@ -624,8 +635,8 @@ export function ProjectsDirectory({ projects }: { projects: Project[] }) {
             {/* 1. Flagship Spotlight: MENSAH */}
             {mensahProject && <FeaturedShowcaseCard project={mensahProject} />}
 
-            {/* 2. Complementary Two-Column Grid: Chef Apedo Foods & Raku */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+            {/* 2. Complementary Three-Column Grid: Chef Apedo Foods, Raku & Davcie Foundation */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
               {chefApedoProject && (
                 <CompanionShowcaseCard
                   project={chefApedoProject}
@@ -649,6 +660,18 @@ export function ProjectsDirectory({ projects }: { projects: Project[] }) {
                   accentColor="blue"
                 />
               )}
+
+              {davcieProject && (
+                <CompanionShowcaseCard
+                  project={davcieProject}
+                  indexNumber="04"
+                  categoryLabel="NONPROFIT PLATFORM"
+                  roleBadge="Full-Stack Developer"
+                  iconSrc="/images/davcie/davcie-emblem.png"
+                  iconBg="#fdfaf0"
+                  accentColor="blue"
+                />
+              )}
             </div>
           </motion.div>
         ) : (
@@ -666,19 +689,35 @@ export function ProjectsDirectory({ projects }: { projects: Project[] }) {
                 return <FeaturedShowcaseCard key={p.slug} project={p} />;
               }
               const isChef = p.slug === "chef-apedo-foods";
+              const isRaku = p.slug === "raku-vehicle-rental";
+              const isDavcie = p.slug === "davcie-foundation";
               return (
                 <div key={p.slug} className="max-w-2xl mx-auto">
                   <CompanionShowcaseCard
                     project={p}
-                    indexNumber={isChef ? "02" : "03"}
-                    categoryLabel={isChef ? "COMMERCIAL PLATFORM" : "SOFTWARE ENGINEERING"}
+                    indexNumber={isChef ? "02" : isRaku ? "03" : "04"}
+                    categoryLabel={
+                      isChef
+                        ? "COMMERCIAL PLATFORM"
+                        : isRaku
+                        ? "SOFTWARE ENGINEERING"
+                        : "NONPROFIT PLATFORM"
+                    }
                     roleBadge={
                       isChef
                         ? "Solo Product Designer & Developer"
-                        : "Product/Client Manager & Contributor"
+                        : isRaku
+                        ? "Product/Client Manager & Contributor"
+                        : "Full-Stack Developer"
                     }
-                    iconSrc={isChef ? "/images/chef_apedo_icon.png" : "/images/raku_icon.svg"}
-                    iconBg={isChef ? "#ffffff" : "#d5001c"}
+                    iconSrc={
+                      isChef
+                        ? "/images/chef_apedo_icon.png"
+                        : isRaku
+                        ? "/images/raku_icon.svg"
+                        : "/images/davcie/davcie-emblem.png"
+                    }
+                    iconBg={isChef ? "#ffffff" : isRaku ? "#d5001c" : "#fdfaf0"}
                     accentColor={isChef ? "purple" : "blue"}
                   />
                 </div>
