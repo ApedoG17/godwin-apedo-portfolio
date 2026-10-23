@@ -26,19 +26,23 @@ interface NavItem {
 export function Navbar() {
   const pathname = usePathname();
   const isContactPage = pathname === "/contact";
+  const isProjectsPage = pathname === "/projects" || pathname?.startsWith("/projects");
+  const isSubpage = isContactPage || isProjectsPage;
   const shouldReduceMotion = useReducedMotion();
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
-  const [active, setActive] = React.useState(isContactPage ? "Contact" : "Home");
+  const [active, setActive] = React.useState(
+    isContactPage ? "Contact" : isProjectsPage ? "Work" : "Home"
+  );
 
   const navItems: NavItem[] = React.useMemo(() => {
-    if (isContactPage) {
+    if (isSubpage) {
       return [
-        { label: "Home", href: "/#top" },
-        { label: "About", href: "/#about" },
-        { label: "What I Do", href: "/#services" },
-        { label: "Work", href: "/#work" },
+        { label: "Home", href: "/#top", isExternalRoute: true },
+        { label: "About", href: "/#about", isExternalRoute: true },
+        { label: "What I Do", href: "/#services", isExternalRoute: true },
+        { label: "Work", href: "/projects", isExternalRoute: true },
         { label: "Contact", href: "/contact", isExternalRoute: true },
       ];
     }
@@ -46,15 +50,21 @@ export function Navbar() {
       { label: "Home", href: "#top" },
       { label: "About", href: "#about" },
       { label: "What I Do", href: "#services" },
-      { label: "Work", href: "#work" },
+      { label: "Work", href: "/projects", isExternalRoute: true },
       { label: "Contact", href: "/contact", isExternalRoute: true },
     ];
-  }, [isContactPage]);
+  }, [isSubpage]);
 
   React.useEffect(() => {
-    if (isContactPage) {
-      setActive("Contact");
-      return;
+    if (isSubpage) {
+      if (isContactPage) setActive("Contact");
+      if (isProjectsPage) setActive("Work");
+
+      const handleSubpageScroll = () => {
+        setScrolled(window.scrollY > 20);
+      };
+      window.addEventListener("scroll", handleSubpageScroll, { passive: true });
+      return () => window.removeEventListener("scroll", handleSubpageScroll);
     }
 
     const handleScroll = () => {
@@ -87,7 +97,7 @@ export function Navbar() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isContactPage]);
+  }, [isSubpage, isContactPage, isProjectsPage]);
 
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -113,7 +123,7 @@ export function Navbar() {
       >
         {/* Brand */}
         <Link
-          href={isContactPage ? "/" : "#top"}
+          href={isSubpage ? "/" : "#top"}
           className="flex items-center gap-2.5 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 rounded-full px-1"
           aria-label="Godwin Apedo — Home"
         >

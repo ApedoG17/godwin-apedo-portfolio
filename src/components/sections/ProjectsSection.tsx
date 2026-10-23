@@ -2,18 +2,17 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { motion, useReducedMotion, AnimatePresence } from "motion/react";
+import Link from "next/link";
+import { motion, useReducedMotion } from "motion/react";
 import {
+  ArrowRight,
   ArrowUpRight,
   Sparkles,
   Users,
   CheckCircle2,
   Lock,
-  Store,
-  LayoutDashboard,
-  Bike,
-  Car,
   Layers,
+  ShoppingBag,
 } from "lucide-react";
 import { PROJECTS } from "@/content/projects";
 import { Project, ProjectScreenshot } from "@/types";
@@ -25,18 +24,20 @@ import {
   MOTION_VIEWPORT,
 } from "@/lib/motion";
 import { TextEffect } from "@/components/core/text-effect";
-import { GlowEffect } from "@/components/core/glow-effect";
 import { Tilt } from "@/components/core/tilt";
 
-// Technology badge colors for light theme
+// Technology badge colors for both light and dark themes
 const TECH_TAGS: Record<string, { bg: string; text: string; border: string }> = {
-  "Next.js": { bg: "rgba(15,23,42,0.06)", text: "#0f172a", border: "rgba(15,23,42,0.12)" },
   "React": { bg: "rgba(2,132,199,0.08)", text: "#0284c7", border: "rgba(2,132,199,0.2)" },
+  "Vite": { bg: "rgba(124,58,237,0.08)", text: "#7c3aed", border: "rgba(124,58,237,0.2)" },
+  "JavaScript": { bg: "rgba(234,179,8,0.08)", text: "#b45309", border: "rgba(234,179,8,0.25)" },
+  "GSAP": { bg: "rgba(16,185,129,0.08)", text: "#059669", border: "rgba(16,185,129,0.2)" },
+  "CSS": { bg: "rgba(37,99,235,0.08)", text: "#2563eb", border: "rgba(37,99,235,0.2)" },
+  "Next.js": { bg: "rgba(15,23,42,0.06)", text: "#0f172a", border: "rgba(15,23,42,0.12)" },
   "TypeScript": { bg: "rgba(37,99,235,0.08)", text: "#2563eb", border: "rgba(37,99,235,0.2)" },
   "Tailwind CSS": { bg: "rgba(8,145,178,0.08)", text: "#0891b2", border: "rgba(8,145,178,0.2)" },
   "Supabase": { bg: "rgba(16,185,129,0.08)", text: "#059669", border: "rgba(16,185,129,0.2)" },
   "Realtime WebSockets": { bg: "rgba(124,58,237,0.08)", text: "#7c3aed", border: "rgba(124,58,237,0.2)" },
-  "Python": { bg: "rgba(217,119,6,0.08)", text: "#d97706", border: "rgba(217,119,6,0.2)" },
   "SQL": { bg: "rgba(124,58,237,0.08)", text: "#7c3aed", border: "rgba(124,58,237,0.2)" },
   "Relational Modeling": { bg: "rgba(124,58,237,0.08)", text: "#7c3aed", border: "rgba(124,58,237,0.2)" },
   "Git": { bg: "rgba(240,80,50,0.08)", text: "#ea580c", border: "rgba(240,80,50,0.2)" },
@@ -52,7 +53,7 @@ function TechBadge({ name }: { name: string }) {
   };
   return (
     <span
-      className="inline-flex items-center font-mono text-[11px] px-2.5 py-1 rounded-lg shadow-2xs tech-badge"
+      className="inline-flex items-center font-mono text-[11px] px-2.5 py-0.5 rounded-lg shadow-2xs tech-badge dark:bg-white/[0.06] dark:border-white/10 dark:text-slate-300"
       style={{
         background: style.bg,
         color: style.text,
@@ -64,72 +65,75 @@ function TechBadge({ name }: { name: string }) {
   );
 }
 
-function getSubsystemIcon(id: string) {
-  switch (id) {
-    case "storefront":
-      return Store;
-    case "admin":
-    case "manager":
-      return LayoutDashboard;
-    case "rider":
-      return Bike;
-    case "client":
-      return Car;
-    default:
-      return Layers;
-  }
-}
-
 // Single Screenshot Card with Route Chrome & Captions
 function ScreenshotFrame({
   screenshot,
   priority = false,
-  accentColor = "teal",
+  accentColor = "purple",
 }: {
   screenshot: ProjectScreenshot;
   priority?: boolean;
-  accentColor?: "teal" | "blue";
+  accentColor?: "purple" | "blue" | "amber";
 }) {
-  const isTeal = accentColor === "teal";
-  const borderClass = isTeal ? "border-purple-200" : "border-blue-200";
-  const textAccent = isTeal ? "text-purple-700" : "text-blue-700";
-  const dotColor = isTeal ? "bg-purple-600" : "bg-blue-600";
+  const borderClass =
+    accentColor === "amber"
+      ? "border-amber-200/90 dark:border-amber-400/20"
+      : accentColor === "blue"
+      ? "border-blue-200/90 dark:border-blue-400/20"
+      : "border-purple-200/90 dark:border-purple-400/20";
+
+  const textAccent =
+    accentColor === "amber"
+      ? "text-amber-700 dark:text-amber-300"
+      : accentColor === "blue"
+      ? "text-blue-700 dark:text-blue-300"
+      : "text-purple-700 dark:text-purple-300";
+
+  const badgeBg =
+    accentColor === "amber"
+      ? "bg-amber-100 dark:bg-amber-500/20 text-amber-800 dark:text-amber-200"
+      : accentColor === "blue"
+      ? "bg-blue-100 dark:bg-blue-500/20 text-blue-800 dark:text-blue-200"
+      : "bg-purple-100 dark:bg-purple-500/20 text-purple-800 dark:text-purple-200";
+
+  const dotColor =
+    accentColor === "amber"
+      ? "bg-amber-600"
+      : accentColor === "blue"
+      ? "bg-blue-600"
+      : "bg-purple-600";
 
   return (
     <div
-      className={`relative rounded-2xl overflow-hidden border ${borderClass} bg-white shadow-md group/img transition-all duration-300`}
+      className={`relative rounded-2xl overflow-hidden border ${borderClass} bg-white dark:bg-slate-900/90 shadow-md group/img transition-all duration-300`}
     >
       {/* Mini Browser Bar */}
-      <div className="px-3 py-2 border-b border-slate-200/80 bg-slate-50/90 backdrop-blur-sm flex items-center justify-between gap-2 text-[11px] font-mono">
+      <div className="px-3 py-2 border-b border-slate-200/80 dark:border-white/10 bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-sm flex items-center justify-between gap-2 text-[11px] font-mono">
         <div className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-rose-400" />
           <span className="w-2 h-2 rounded-full bg-amber-400" />
           <span className="w-2 h-2 rounded-full bg-emerald-400" />
           {screenshot.route && (
-            <span className="ml-2 text-slate-500 text-[10px] tracking-tight truncate max-w-[190px] sm:max-w-[240px]">
+            <span className="ml-2 text-slate-500 dark:text-slate-400 text-[10px] tracking-tight truncate max-w-[190px] sm:max-w-[240px]">
               {screenshot.route}
             </span>
           )}
         </div>
-        <span
-          className={`px-2 py-0.5 rounded text-[10px] font-medium shrink-0 ${
-            isTeal ? "bg-purple-100 text-purple-700" : "bg-blue-100 text-blue-700"
-          }`}
-        >
+        <span className={`px-2 py-0.5 rounded text-[10px] font-medium shrink-0 ${badgeBg}`}>
           {screenshot.label}
         </span>
       </div>
 
-      {/* Real Screenshot */}
+      {/* Screenshot Image */}
       <div
-        className="relative w-full aspect-video min-h-[180px] sm:min-h-[220px] overflow-hidden bg-slate-100"
+        className="relative w-full aspect-video min-h-[180px] sm:min-h-[220px] overflow-hidden bg-slate-100 dark:bg-slate-800"
         style={{ aspectRatio: "16 / 9" }}
       >
         <Image
           src={screenshot.src}
           alt={screenshot.alt}
           fill
-          sizes="(max-width: 1024px) 100vw, 42vw"
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover object-top transition-transform duration-500 group-hover/img:scale-[1.03]"
           priority={priority}
         />
@@ -137,8 +141,8 @@ function ScreenshotFrame({
 
       {/* Bottom Caption Bar */}
       {screenshot.caption && (
-        <div className="px-3.5 py-2 border-t border-slate-200/80 bg-slate-50/90 backdrop-blur-sm flex items-center justify-between text-[11px] font-mono text-slate-500">
-          <span className="flex items-center gap-1.5 text-slate-700 truncate">
+        <div className="px-3.5 py-2 border-t border-slate-200/80 dark:border-white/10 bg-slate-50/90 dark:bg-slate-900/90 backdrop-blur-sm flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+          <span className="flex items-center gap-1.5 text-slate-700 dark:text-slate-300 truncate">
             <span className={`w-1.5 h-1.5 rounded-full ${dotColor} shrink-0`} />
             <span className="truncate">{screenshot.caption}</span>
           </span>
@@ -149,446 +153,151 @@ function ScreenshotFrame({
   );
 }
 
-// Dedicated Workflow Card for Rider / Logistics (displayed when Rider tab is active)
-function RiderLogisticsCard() {
-  return (
-    <div className="rounded-2xl border border-purple-200 bg-gradient-to-b from-purple-50/70 to-white p-4 sm:p-5 shadow-sm space-y-3.5">
-      <div className="flex items-center justify-between border-b border-purple-200/80 pb-2.5">
-        <span className="text-xs font-mono font-semibold text-purple-700 uppercase tracking-wider flex items-center gap-1.5">
-          <Bike className="w-3.5 h-3.5 text-purple-600" />
-          Kwame Dispatch Pipeline
-        </span>
-        <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-100 text-purple-700 border border-purple-200 font-medium">
-          Real-time Event Queue
-        </span>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
-        <div className="p-2.5 rounded-xl bg-white border border-purple-100 shadow-2xs space-y-1">
-          <p className="font-mono text-[10px] text-purple-700 uppercase font-semibold">1. Ticket Dispatch</p>
-          <p className="text-content-secondary text-[11px] leading-relaxed">
-            Kitchen staff flags order ready; WebSocket broadcast instantly triggers courier queue.
-          </p>
-        </div>
-        <div className="p-2.5 rounded-xl bg-white border border-purple-100 shadow-2xs space-y-1">
-          <p className="font-mono text-[10px] text-purple-700 uppercase font-semibold">2. Campus Coordinates</p>
-          <p className="text-content-secondary text-[11px] leading-relaxed">
-            Pins exact customer hall coordinates (e.g. Evandy Hostel, Legon Hall) for courier navigation.
-          </p>
-        </div>
-        <div className="p-2.5 rounded-xl bg-white border border-purple-100 shadow-2xs space-y-1">
-          <p className="font-mono text-[10px] text-purple-700 uppercase font-semibold">3. Delivery Handover</p>
-          <p className="text-content-secondary text-[11px] leading-relaxed">
-            Rider marks order delivered, notifying both customer and kitchen display in real-time.
-          </p>
-        </div>
-        <div className="p-2.5 rounded-xl bg-white border border-purple-100 shadow-2xs space-y-1">
-          <p className="font-mono text-[10px] text-purple-700 uppercase font-semibold">4. Fee Reconciliation</p>
-          <p className="text-content-secondary text-[11px] leading-relaxed">
-            Courier delivery fee (GH₵ 10.00/drop) automatically logged to the admin financial ledger.
-          </p>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Interactive Project Card with Subsystem Switcher
-function ProjectCard({
-  project,
-  index,
-  accentColor = "teal",
-}: {
-  project: Project;
-  index: number;
-  accentColor?: "teal" | "blue";
-}) {
+// ── FEATURED FLAGSHIP SPOTLIGHT: MENSAH ──
+function FeaturedProjectCard({ project }: { project: Project }) {
   const shouldReduceMotion = useReducedMotion();
-  const isTeal = accentColor === "teal";
-  const subsystems = project.subsystems ?? [];
-
-  // Active Subsystem Tab
-  const [activeSubsystemId, setActiveSubsystemId] = React.useState<string>(
-    subsystems[0]?.id ?? "default"
-  );
-
-  // Sub-view index if subsystem has > 2 screenshots (e.g. Admin marketing toggle)
-  const [adminViewIndex, setAdminViewIndex] = React.useState<number>(0);
-
-  const activeSubsystem =
-    subsystems.find((s) => s.id === activeSubsystemId) ?? subsystems[0];
-
-  // Border & Glow Accents
-  const cardBorderClass = isTeal
-    ? "border-purple-200 hover:border-purple-300"
-    : "border-blue-200 hover:border-blue-300";
-  const spotlightClass = isTeal
-    ? "from-purple-500/12 via-indigo-500/5 to-transparent"
-    : "from-blue-500/12 via-indigo-500/5 to-transparent";
+  const primaryScreenshot: ProjectScreenshot = project.subsystems?.[0]?.screenshots?.[0] ?? {
+    src: project.images?.[0] ?? "/images/mensah-preview.png",
+    alt: "MENSAH Luxury Bespoke Tailoring & E-Commerce Storefront",
+    label: "Brand Atelier & Mall",
+    route: "mensah-lex.vercel.app",
+    caption: "Savile Row structure meets West African sartorial heritage",
+  };
 
   return (
-    <Tilt rotationFactor={7.5} perspective={1000} className="w-full">
+    <Tilt rotationFactor={6} perspective={1000} className="w-full">
       <motion.article
         initial={{ opacity: 0, y: shouldReduceMotion ? 0 : MOTION_DISTANCES.prominent }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={MOTION_VIEWPORT.default}
         transition={{
           duration: shouldReduceMotion ? MOTION_DURATIONS.instant : MOTION_DURATIONS.deliberate,
-          delay: shouldReduceMotion ? 0 : index * 0.1,
           ease: MOTION_EASINGS.easeOut,
         }}
-        className={`glass-panel rounded-[2.5rem] overflow-hidden border ${cardBorderClass} shadow-[0_20px_50px_rgba(0,0,0,0.06)] relative group/card bg-white/85`}
+        className="glass-panel rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-amber-200/90 dark:border-amber-400/25 shadow-[0_20px_50px_rgba(217,119,6,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative group/card bg-white/90 dark:bg-slate-900/70"
       >
-        {/* Motion Primitives Spotlight Hover Effect */}
-        <Spotlight className={spotlightClass} size={440} />
+        <Spotlight className="from-amber-500/12 via-purple-500/6 to-transparent" size={500} />
 
-        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 p-6 sm:p-8 lg:p-10 items-start">
-          {/* ── LEFT COLUMN: Interactive Subsystem Explorer & Real Screenshots ── */}
-          <div className="lg:col-span-5 flex flex-col gap-4 sm:gap-5">
-            {/* Header Row: Category & Role Badge */}
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <span
-                className={`font-mono text-xs font-bold uppercase tracking-wider ${
-                  isTeal ? "text-purple-700" : "text-blue-700"
-                }`}
-              >
-                {index === 0 ? "01 • COMMERCIAL ECOSYSTEM" : "02 • SOFTWARE ENGINEERING"}
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 p-6 sm:p-8 lg:p-10 items-center">
+          {/* ── LEFT COLUMN: Real Interface Screenshot ── */}
+          <div className="lg:col-span-7 flex flex-col gap-3">
+            <ScreenshotFrame screenshot={primaryScreenshot} priority accentColor="amber" />
+            <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 px-1 pt-1">
+              <span className="flex items-center gap-1.5">
+                <ShoppingBag className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
+                Luxury E-Commerce &amp; Spatial Logistics
               </span>
-
-              {isTeal ? (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-amber-50 text-amber-800 border border-amber-200">
-                  <Sparkles className="w-3 h-3 text-amber-600" />
-                  Solo Product Designer &amp; Developer
-                </span>
-              ) : (
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-blue-50 text-blue-800 border border-blue-200">
-                  <Users className="w-3 h-3 text-blue-600" />
-                  Product/Client Manager &amp; Primary Contributor
-                </span>
-              )}
-            </div>
-
-            {/* Subsystem Switcher Tabs */}
-            {subsystems.length > 1 && (
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-slate-500">
-                    Explore System Interfaces
-                  </span>
-                  <span className="text-[10px] font-mono text-purple-700 font-medium">
-                    {subsystems.length} Connected Portals
-                  </span>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-slate-100/90 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 backdrop-blur-md project-tabs-container">
-                  {subsystems.map((sub) => {
-                    const isActive = activeSubsystemId === sub.id;
-                    const Icon = getSubsystemIcon(sub.id);
-                    return (
-                      <button
-                        key={sub.id}
-                        type="button"
-                        onClick={() => {
-                          setActiveSubsystemId(sub.id);
-                          setAdminViewIndex(0);
-                        }}
-                        className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono transition-all cursor-pointer ${
-                          isActive
-                            ? isTeal
-                              ? "text-purple-700 dark:text-purple-300 font-semibold shadow-xs"
-                              : "text-blue-700 dark:text-blue-300 font-semibold shadow-xs"
-                            : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                        }`}
-                      >
-                        {isActive && (
-                          <motion.div
-                            layoutId={`active-tab-${project.slug}`}
-                            className={`absolute inset-0 rounded-lg project-tab-active ${
-                              isTeal
-                                ? "bg-white dark:bg-purple-500/20 border border-purple-200 dark:border-purple-400/30 shadow-xs"
-                                : "bg-white dark:bg-blue-500/20 border border-blue-200 dark:border-blue-400/30 shadow-xs"
-                            }`}
-                            transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                          />
-                        )}
-                        <span className="relative z-10 flex items-center gap-1.5">
-                          <Icon className="w-3.5 h-3.5" />
-                          <span>{sub.name}</span>
-                          <span className="text-[10px] opacity-75 font-normal px-1 py-0.2 rounded bg-slate-200/60 dark:bg-white/10 border border-slate-300/40 dark:border-white/10 text-slate-600 dark:text-slate-300">
-                            {sub.screenshots.length}
-                          </span>
-                        </span>
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Subsystem Role Helper Description */}
-                {activeSubsystem?.description && (
-                  <p className="text-[11px] font-mono text-slate-500 leading-relaxed px-1">
-                    {activeSubsystem.description}
-                  </p>
-                )}
-              </div>
-            )}
-
-            {/* Sub-view toggle when subsystem has 3 screenshots */}
-            {activeSubsystem?.screenshots && activeSubsystem.screenshots.length > 2 && (
-              <div className="flex items-center gap-1.5 p-1 rounded-lg bg-slate-100 dark:bg-white/[0.06] border border-slate-200 dark:border-white/10 text-[11px] font-mono">
-                <span className="text-slate-500 dark:text-slate-400 px-2 text-[10px]">Views:</span>
-                {activeSubsystem.screenshots.map((s, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => setAdminViewIndex(idx)}
-                    className={`px-2 py-0.5 rounded text-[10px] cursor-pointer transition-colors ${
-                      adminViewIndex === idx
-                        ? isTeal
-                          ? "bg-purple-600 text-white font-bold"
-                          : "bg-blue-600 text-white font-bold"
-                        : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                    }`}
-                  >
-                    {s.label.split("&")[0].trim()}
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* ── Screenshots Stack for Active Subsystem ── */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${activeSubsystemId}-${adminViewIndex}`}
-                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : MOTION_DISTANCES.subtle }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -MOTION_DISTANCES.subtle }}
-                transition={{
-                  duration: shouldReduceMotion ? MOTION_DURATIONS.instant : MOTION_DURATIONS.normal,
-                  ease: MOTION_EASINGS.easeOut,
-                }}
-                className="flex flex-col gap-4 sm:gap-5"
-              >
-                {activeSubsystemId === "rider" ? (
-                  <>
-                    <ScreenshotFrame
-                      screenshot={activeSubsystem.screenshots[0]}
-                      accentColor={accentColor}
-                    />
-                    <RiderLogisticsCard />
-                  </>
-                ) : activeSubsystem.screenshots.length > 2 ? (
-                  <>
-                    <ScreenshotFrame
-                      screenshot={activeSubsystem.screenshots[adminViewIndex]}
-                      accentColor={accentColor}
-                    />
-                    <ScreenshotFrame
-                      screenshot={
-                        activeSubsystem.screenshots[
-                          (adminViewIndex + 1) % activeSubsystem.screenshots.length
-                        ]
-                      }
-                      accentColor={accentColor}
-                    />
-                  </>
-                ) : (
-                  activeSubsystem.screenshots.map((shot, idx) => (
-                    <ScreenshotFrame
-                      key={shot.src}
-                      screenshot={shot}
-                      priority={index === 0 && idx === 0}
-                      accentColor={accentColor}
-                    />
-                  ))
-                )}
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Footnote */}
-            <div className="pt-2 flex items-center justify-between text-xs font-mono text-slate-500">
-              <span>
-                {isTeal ? "Independent Product Initiative" : "University Software Engineering"}
-              </span>
-              <span className={isTeal ? "text-purple-700 font-medium" : "text-blue-700 font-medium"}>
-                {isTeal ? "Full Ownership (3 Portals)" : "Collaborative Group Project"}
+              <span className="text-amber-700 dark:text-amber-400 font-medium">
+                Dual-View Atelier
               </span>
             </div>
           </div>
 
-          {/* ── RIGHT COLUMN: Project Details & Systems Narrative ── */}
-          <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-start sm:items-center gap-3.5">
-                {project.slug === "chef-apedo-foods" && (
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shrink-0 border border-amber-200/90 bg-white crest-frame shadow-xs p-1 mt-0.5 sm:mt-0">
-                    <Image
-                      src="/images/chef_apedo_icon.png"
-                      alt="Chef Apedo Foods"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-contain rounded-xl"
-                    />
-                  </div>
-                )}
-                {project.slug === "raku-vehicle-rental" && (
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl overflow-hidden shrink-0 border border-red-200/90 bg-[#d5001c] shadow-xs p-1 flex items-center justify-center mt-0.5 sm:mt-0">
-                    <Image
-                      src="/images/raku_icon.svg"
-                      alt="Raku Vehicle Rental Management System"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                )}
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight">
-                    {project.title}
-                  </h3>
-                  <p
-                    className={`text-sm sm:text-base font-semibold mt-1 ${
-                      isTeal ? "text-purple-700" : "text-blue-700"
-                    }`}
-                  >
-                    {project.tagline}
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-sm sm:text-base text-content-secondary leading-relaxed">
-                {project.contributionSummary}
-              </p>
-
-              {/* Architectural Ecosystem Scope Callout */}
-              <div className="p-3.5 rounded-2xl glass-card border border-slate-200 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.04] space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-purple-700 dark:text-purple-300 font-semibold uppercase tracking-wider flex items-center gap-1.5">
-                    <Layers className="w-3.5 h-3.5" />
-                    Ecosystem Architecture
-                  </span>
-                  <span className="text-slate-500 dark:text-slate-400 text-[11px]">
-                    {isTeal ? "3 Interconnected Roles" : "2 Management Tiers"}
-                  </span>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {subsystems.map((s) => (
-                    <button
-                      key={s.id}
-                      type="button"
-                      onClick={() => setActiveSubsystemId(s.id)}
-                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-[11px] font-mono cursor-pointer transition-all ${
-                        activeSubsystemId === s.id
-                          ? isTeal
-                            ? "bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-200 border border-purple-300 dark:border-purple-400/40 font-semibold"
-                            : "bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-200 border border-blue-300 dark:border-blue-400/40 font-semibold"
-                          : "bg-white dark:bg-white/[0.06] text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/10 hover:border-slate-300 dark:hover:border-purple-400/30 dark:hover:text-white ecosystem-inactive-btn"
-                      }`}
-                    >
-                      <span className="font-medium">{s.name}</span>
-                      <span className="text-[10px] text-slate-500 dark:text-slate-400">({s.badge})</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Problem & Architecture Callout Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
-                <div className="p-4 rounded-2xl glass-card border border-slate-200/90 space-y-1 bg-white/90 shadow-2xs">
-                  <p
-                    className={`text-[11px] font-mono font-semibold uppercase ${
-                      isTeal ? "text-purple-700" : "text-blue-700"
-                    }`}
-                  >
-                    Problem Solved
-                  </p>
-                  <p className="text-xs text-content-secondary leading-relaxed">
-                    {project.problemStatement}
-                  </p>
-                </div>
-                <div className="p-4 rounded-2xl glass-card border border-slate-200/90 space-y-1 bg-white/90 shadow-2xs">
-                  <p
-                    className={`text-[11px] font-mono font-semibold uppercase ${
-                      isTeal ? "text-purple-700" : "text-blue-700"
-                    }`}
-                  >
-                    Architecture Overview
-                  </p>
-                  <p className="text-xs text-content-secondary leading-relaxed">
-                    {project.architectureOverview}
-                  </p>
-                </div>
-              </div>
-
-              {/* Key Contributions List */}
-              <div className="space-y-2 pt-2">
-                <p className="text-xs font-mono uppercase text-slate-500 tracking-wider font-semibold">
-                  {isTeal ? "Key Contributions & System Engineering" : "My Responsibilities in the Team"}
-                </p>
-                <ul className="space-y-2">
-                  {project.individualContributions.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-content-secondary">
-                      <CheckCircle2
-                        className={`w-4 h-4 shrink-0 mt-0.5 ${
-                          isTeal ? "text-purple-600" : "text-blue-600"
-                        }`}
-                      />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* ── RIGHT COLUMN: Narrative & Action Links ── */}
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-5">
+            {/* Classification & Role Badge */}
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5" />
+                01 • FEATURED SPOTLIGHT
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-amber-50 dark:bg-amber-500/10 text-amber-800 dark:text-amber-200 border border-amber-200/80 dark:border-amber-400/30">
+                Hackathon Prototype
+              </span>
             </div>
 
-            {/* Tech Stack & Action Links */}
-            <div className="pt-6 border-t border-slate-200/80 space-y-4">
+            {/* Title & Brand Emblem */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-amber-200/90 dark:border-amber-400/30 bg-slate-950 p-1 flex items-center justify-center shadow-xs">
+                  <Image
+                    src="/images/mensah-logo.png"
+                    alt="MENSAH logo"
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm font-semibold text-amber-700 dark:text-amber-400">
+                    {project.subtitle}
+                  </p>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm text-content-secondary dark:text-slate-300 leading-relaxed pt-1">
+                {project.shortDescription}
+              </p>
+            </div>
+
+            {/* Distinctive Technical Highlights */}
+            <div className="space-y-2 pt-1 border-t border-slate-200/70 dark:border-white/10">
+              <p className="text-[11px] font-mono uppercase tracking-wider text-slate-500 dark:text-slate-400 font-semibold">
+                Core Architectural Capabilities
+              </p>
+              <ul className="space-y-1.5 text-xs text-content-secondary dark:text-slate-300">
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  <span>Deterministic measurement-based virtual fitting assistant</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  <span>Haversine spherical distance courier matching &amp; animated route map</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                  <span>Bespoke monogram embroidery, WhatsApp checkout &amp; fallback catalog</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Tech Tags & CTAs */}
+            <div className="pt-2 space-y-4">
               <div className="flex flex-wrap gap-1.5">
                 {[
                   ...(project.techStack.frontend ?? []),
-                  ...(project.techStack.backend ?? []),
-                  ...(project.techStack.database ?? []),
                   ...(project.techStack.tooling ?? []),
                 ].map((t) => (
                   <TechBadge key={t} name={t} />
                 ))}
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 pt-1">
+              <div className="flex flex-wrap items-center gap-3 pt-1">
+                {/* Future Case Study Link */}
+                <Link
+                  href="/projects/mensah"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-slate-900 hover:bg-slate-800 text-white dark:bg-amber-600 dark:hover:bg-amber-500 shadow-sm hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+                >
+                  <span>View Case Study</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+
+                {/* External Verified Live Prototype */}
                 {project.links.live && (
-                  <div className="relative inline-flex group/glow">
-                    <GlowEffect
-                      colors={
-                        isTeal
-                          ? ["#8b5cf6", "#a78bfa", "#38bdf8", "#6366f1"]
-                          : ["#3b82f6", "#60a5fa", "#8b5cf6", "#818cf8"]
-                      }
-                      mode="colorShift"
-                      blur="medium"
-                      scale={1.22}
-                      duration={4}
-                      className="opacity-60 group-hover/glow:opacity-90 group-focus-within/glow:opacity-90 transition-opacity duration-300 rounded-2xl"
-                    />
-                    <a
-                      href={project.links.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative z-10 inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all group/btn bg-slate-900 text-white hover:bg-slate-800 shadow-[0_2px_12px_rgba(15,23,42,0.2)] hover:shadow-[0_4px_16px_rgba(124,58,237,0.25)] hover:scale-[1.02] active:scale-[0.98]"
-                    >
-                      <span>View Live Demo</span>
-                      <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                    </a>
-                  </div>
+                  <a
+                    href={project.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm glass-card border-slate-200/90 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:text-amber-700 dark:hover:text-amber-300 transition-colors"
+                  >
+                    <span>Live Prototype</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </a>
                 )}
 
-                {isTeal ? (
-                  <span className="text-xs font-mono text-slate-500 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-purple-600" />
-                    Independent Platform • Deployed on Vercel
-                  </span>
-                ) : (
-                  <span className="text-xs font-mono text-slate-500 flex items-center gap-1.5">
-                    <Lock className="w-3.5 h-3.5 text-slate-400" />
-                    Private Coursework Repository • Deployed on Vercel
-                  </span>
+                {/* GitHub Repository */}
+                {project.links.github && (
+                  <a
+                    href={project.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-mono text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                  >
+                    GitHub ↗
+                  </a>
                 )}
               </div>
             </div>
@@ -599,9 +308,203 @@ function ProjectCard({
   );
 }
 
+// ── COMPANION PROJECT CARD (Chef Apedo Foods & Raku) ──
+function CompanionProjectCard({
+  project,
+  indexNumber,
+  categoryLabel,
+  roleBadge,
+  iconSrc,
+  iconBg,
+  accentColor = "purple",
+  caseStudyHref,
+}: {
+  project: Project;
+  indexNumber: string;
+  categoryLabel: string;
+  roleBadge: string;
+  iconSrc?: string;
+  iconBg?: string;
+  accentColor: "purple" | "blue";
+  caseStudyHref: string;
+}) {
+  const shouldReduceMotion = useReducedMotion();
+  const isPurple = accentColor === "purple";
+
+  const cardBorder = isPurple
+    ? "border-purple-200/90 hover:border-purple-300 dark:border-purple-400/20 dark:hover:border-purple-400/40"
+    : "border-blue-200/90 hover:border-blue-300 dark:border-blue-400/20 dark:hover:border-blue-400/40";
+
+  const categoryColor = isPurple
+    ? "text-purple-700 dark:text-purple-300"
+    : "text-blue-700 dark:text-blue-300";
+
+  const roleBg = isPurple
+    ? "bg-purple-50 dark:bg-purple-500/10 text-purple-800 dark:text-purple-200 border-purple-200/80 dark:border-purple-400/30"
+    : "bg-blue-50 dark:bg-blue-500/10 text-blue-800 dark:text-blue-200 border-blue-200/80 dark:border-blue-400/30";
+
+  const spotlightGradient = isPurple
+    ? "from-purple-500/12 via-indigo-500/5 to-transparent"
+    : "from-blue-500/12 via-indigo-500/5 to-transparent";
+
+  const primaryScreenshot: ProjectScreenshot = project.subsystems?.[0]?.screenshots?.[0] ?? {
+    src: project.images?.[0] ?? "",
+    alt: project.title,
+    label: "Portal Interface",
+    route: project.links.live?.replace("https://", "") ?? "",
+    caption: project.tagline,
+  };
+
+  return (
+    <Tilt rotationFactor={5} perspective={1000} className="w-full h-full">
+      <motion.article
+        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : MOTION_DISTANCES.default }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={MOTION_VIEWPORT.default}
+        transition={{
+          duration: shouldReduceMotion ? MOTION_DURATIONS.instant : MOTION_DURATIONS.moderate,
+          ease: MOTION_EASINGS.easeOut,
+        }}
+        className={`glass-panel rounded-[2rem] overflow-hidden border ${cardBorder} shadow-sm relative group/card flex flex-col justify-between p-6 sm:p-7 bg-white/85 dark:bg-slate-900/60 h-full`}
+      >
+        <Spotlight className={spotlightGradient} size={360} />
+
+        <div className="relative z-10 flex flex-col space-y-4">
+          {/* Top Label Row */}
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <span className={`font-mono text-xs font-bold uppercase tracking-wider ${categoryColor}`}>
+              {indexNumber} • {categoryLabel}
+            </span>
+            <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-semibold border ${roleBg}`}>
+              {isPurple ? <Sparkles className="w-3 h-3 text-purple-600" /> : <Users className="w-3 h-3 text-blue-600" />}
+              {roleBadge}
+            </span>
+          </div>
+
+          {/* Screenshot Frame */}
+          <ScreenshotFrame
+            screenshot={primaryScreenshot}
+            accentColor={accentColor}
+          />
+
+          {/* Title & Brand Icon */}
+          <div className="space-y-1.5 pt-1">
+            <div className="flex items-center gap-3">
+              {iconSrc && (
+                <div
+                  className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-slate-200/90 dark:border-white/10 shadow-2xs p-1 flex items-center justify-center"
+                  style={{ backgroundColor: iconBg ?? "#ffffff" }}
+                >
+                  <Image
+                    src={iconSrc}
+                    alt={`${project.title} icon`}
+                    width={36}
+                    height={36}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              )}
+              <div className="min-w-0 flex-1">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight truncate">
+                  {project.title}
+                </h3>
+                <p className={`text-xs font-semibold truncate ${categoryColor}`}>
+                  {project.subtitle ?? project.tagline}
+                </p>
+              </div>
+            </div>
+
+            <p className="text-xs sm:text-sm text-content-secondary dark:text-slate-300 leading-relaxed pt-1">
+              {project.shortDescription ?? project.contributionSummary}
+            </p>
+          </div>
+
+          {/* Architecture Callout Pills */}
+          {project.subsystems && project.subsystems.length > 0 && (
+            <div className="p-3 rounded-xl glass-card border border-slate-200/80 dark:border-white/10 bg-slate-50/70 dark:bg-white/[0.03] space-y-1.5">
+              <div className="flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
+                <span className="flex items-center gap-1 font-semibold text-slate-700 dark:text-slate-300">
+                  <Layers className="w-3 h-3" />
+                  Connected Portals
+                </span>
+                <span>{project.subsystems.length} Subsystems</span>
+              </div>
+              <div className="flex flex-wrap gap-1">
+                {project.subsystems.map((sub) => (
+                  <span
+                    key={sub.id}
+                    className="text-[10px] font-mono px-2 py-0.5 rounded bg-white dark:bg-white/10 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300"
+                  >
+                    {sub.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Footer: Tech Stack & CTAs */}
+        <div className="relative z-10 pt-5 mt-5 border-t border-slate-200/70 dark:border-white/10 space-y-3.5">
+          <div className="flex flex-wrap gap-1.5">
+            {[
+              ...(project.techStack.frontend ?? []),
+              ...(project.techStack.backend ?? []),
+              ...(project.techStack.database ?? []),
+            ]
+              .slice(0, 5)
+              .map((t) => (
+                <TechBadge key={t} name={t} />
+              ))}
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
+            <div className="flex items-center gap-2.5">
+              {/* Future Case Study Link */}
+              <Link
+                href={caseStudyHref}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl font-semibold text-xs transition-all bg-slate-900 hover:bg-slate-800 text-white dark:bg-white/[0.1] dark:hover:bg-white/[0.16] dark:text-white shadow-2xs hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
+              >
+                <span>View Case Study</span>
+                <ArrowRight className="w-3 h-3" />
+              </Link>
+
+              {/* External Live Demo */}
+              {project.links.live && (
+                <a
+                  href={project.links.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 px-3 py-2 rounded-xl font-medium text-xs glass-card border-slate-200/90 dark:border-white/10 text-slate-700 dark:text-slate-300 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+                >
+                  <span>Live Demo</span>
+                  <ArrowUpRight className="w-3 h-3" />
+                </a>
+              )}
+            </div>
+
+            {project.slug === "raku-vehicle-rental" ? (
+              <span className="text-[11px] font-mono text-slate-500 dark:text-slate-400 flex items-center gap-1">
+                <Lock className="w-3 h-3 text-slate-400" />
+                Coursework
+              </span>
+            ) : (
+              <span className="text-[11px] font-mono text-purple-700 dark:text-purple-300 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
+                Commercial
+              </span>
+            )}
+          </div>
+        </div>
+      </motion.article>
+    </Tilt>
+  );
+}
+
+// ── MAIN PROJECTS SECTION COMPONENT ──
 export function ProjectsSection() {
-  const chefApedo = PROJECTS.find((p) => p.slug === "chef-apedo-foods") ?? PROJECTS[0];
-  const raku = PROJECTS.find((p) => p.slug === "raku-vehicle-rental") ?? PROJECTS[1];
+  const mensah = PROJECTS.find((p) => p.slug === "mensah") ?? PROJECTS[0];
+  const chefApedo = PROJECTS.find((p) => p.slug === "chef-apedo-foods") ?? PROJECTS[1];
+  const raku = PROJECTS.find((p) => p.slug === "raku-vehicle-rental") ?? PROJECTS[2];
 
   return (
     <section
@@ -612,9 +515,9 @@ export function ProjectsSection() {
       {/* Anchor for #projects compatibility */}
       <div id="projects" className="sr-only" aria-hidden="true" />
 
-      <div className="space-y-12">
+      <div className="space-y-10 sm:space-y-12">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-2">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 pb-2 border-b border-slate-200/80 dark:border-white/10">
           <div className="space-y-2">
             <span className="text-xs sm:text-sm font-mono font-semibold uppercase tracking-[0.2em] text-purple-600">
               FEATURED WORK
@@ -623,30 +526,70 @@ export function ProjectsSection() {
               as="h2"
               per="word"
               preset="fade-in-blur"
-              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15]"
               segmentWrapperClassName={(segment) =>
                 segment.includes("Systems") ? "text-gradient-teal" : undefined
               }
             >
               Selected Projects & Systems
             </TextEffect>
+            <p className="text-xs sm:text-sm text-content-secondary dark:text-slate-400 max-w-xl font-mono leading-relaxed">
+              Curated previews of commercial platforms, software engineering systems, and luxury digital architecture.
+            </p>
           </div>
+
           <a
             href="https://github.com/ApedoG17"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-xs font-mono text-slate-700 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-colors glass-card px-4 py-2 rounded-full self-start sm:self-auto border-slate-200 dark:border-white/10 hover:border-purple-300 bg-white/80 dark:bg-white/[0.06] shadow-2xs group"
+            className="inline-flex items-center gap-2 text-xs font-mono text-slate-700 dark:text-slate-200 hover:text-purple-700 dark:hover:text-purple-300 transition-colors glass-card px-4 py-2 rounded-full self-start sm:self-auto border-slate-200 dark:border-white/10 hover:border-purple-300 bg-white/80 dark:bg-white/[0.06] shadow-2xs group cursor-pointer"
           >
             <span>Explore all on GitHub</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
 
-        {/* ── PROJECT 1: Chef Apedo Foods (Multi-Role Commercial Platform) ── */}
-        <ProjectCard project={chefApedo} index={0} accentColor="teal" />
+        {/* ── 1. FEATURED FLAGSHIP SPOTLIGHT: MENSAH ── */}
+        <FeaturedProjectCard project={mensah} />
 
-        {/* ── PROJECT 2: Raku Vehicle Rental Management System (Team Coursework) ── */}
-        <ProjectCard project={raku} index={1} accentColor="blue" />
+        {/* ── 2. COMPANION GRID: CHEF APEDO FOODS & RAKU RENTALS ── */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+          <CompanionProjectCard
+            project={chefApedo}
+            indexNumber="02"
+            categoryLabel="COMMERCIAL PLATFORM"
+            roleBadge="Solo Product Designer & Developer"
+            iconSrc="/images/chef_apedo_icon.png"
+            iconBg="#ffffff"
+            accentColor="purple"
+            caseStudyHref="/projects/chef-apedo-foods"
+          />
+
+          <CompanionProjectCard
+            project={raku}
+            indexNumber="03"
+            categoryLabel="SOFTWARE ENGINEERING"
+            roleBadge="Product/Client Manager & Contributor"
+            iconSrc="/images/raku_icon.svg"
+            iconBg="#d5001c"
+            accentColor="blue"
+            caseStudyHref="/projects/raku"
+          />
+        </div>
+
+        {/* ── 3. PROMINENT SECTION-LEVEL EXPLORE ALL PROJECTS BUTTON ── */}
+        <div className="pt-4 sm:pt-6 flex flex-col items-center justify-center text-center space-y-3">
+          <Link
+            href="/projects"
+            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold transition-all duration-200 hover:scale-[1.03] active:scale-[0.98] bg-slate-900 hover:bg-slate-800 text-white dark:bg-purple-600 dark:hover:bg-purple-500 shadow-[0_4px_20px_rgba(15,23,42,0.15)] dark:shadow-[0_4px_20px_rgba(147,51,234,0.3)] group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 cursor-pointer"
+          >
+            <span>Explore All Projects</span>
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+          <p className="text-xs font-mono text-content-muted">
+            Complete collection including operational workflows, deep-dive architectures, and university coursework archives
+          </p>
+        </div>
       </div>
     </section>
   );

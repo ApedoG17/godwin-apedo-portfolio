@@ -1,12 +1,15 @@
 export type ProjectScope = 
   | "Solo Product Designer & Developer"
   | "Solo Product & Development"
-  | "University Group Project";
+  | "University Group Project"
+  | "Hackathon Project"
+  | "Solo Frontend Engineer & Designer";
 
 export type ProjectCategory = 
   | "Commercial Platform" 
   | "Academic Software Engineering" 
-  | "Tooling & Systems";
+  | "Tooling & Systems"
+  | "Luxury E-Commerce & Logistics";
 
 export interface ProjectTechStack {
   frontend?: string[];
@@ -40,7 +43,9 @@ export interface ProjectSubsystem {
 export interface Project {
   slug: string;
   title: string;
+  subtitle?: string;
   tagline: string;
+  shortDescription?: string;
   category: ProjectCategory;
   scope: ProjectScope;
   role?: string;
@@ -54,6 +59,7 @@ export interface Project {
   subsystems?: ProjectSubsystem[];
   timeline?: string;
   isFeatured: boolean;
+  accentColor?: "purple" | "blue" | "amber" | "teal";
   /**
    * Flag indicating whether specific details (e.g. unconfirmed modules)
    * are provisional awaiting author confirmation.

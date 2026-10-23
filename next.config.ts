@@ -14,6 +14,15 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      {
+        source: "/projects/raku-vehicle-rental",
+        destination: "/projects/raku",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

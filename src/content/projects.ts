@@ -2,9 +2,98 @@ import { Project } from "@/types";
 
 export const PROJECTS: Project[] = [
   {
+    slug: "mensah",
+    title: "MENSAH",
+    subtitle: "Luxury Tailoring & Spatial Logistics",
+    tagline: "Bespoke luxury menswear couture, measurement-based virtual fitting & spatial logistics engine",
+    shortDescription:
+      "A luxury menswear e-commerce prototype exploring measurement-based fitting, bespoke customisation, WhatsApp checkout, and animated courier dispatch visualisation.",
+    category: "Luxury E-Commerce & Logistics",
+    scope: "Hackathon Project",
+    role: "Sole Creator & Frontend Engineer",
+    contributionSummary:
+      "Developed as a hackathon project exploring luxury menswear couture with bespoke monogram customisation, an interactive conversational sizing assistant, and Haversine spatial courier matching.",
+    individualContributions: [
+      "Engineered luxury digital atelier with React 19, Vite, GSAP timelines, and a custom Vanilla CSS design system",
+      "Built conversational virtual fitting assistant utilizing validated body measurements and deterministic sizing formulas",
+      "Implemented great-circle courier proximity engine using the mathematical Haversine formula across Accra locations",
+      "Constructed animated vector grid map visualizing multi-stage courier dispatch routes to the atelier and delivery destinations",
+      "Designed two-stage checkout modal generating pre-formatted WhatsApp order manifests directly to the boutique",
+      "Architected resilient offline catalog fallback ensuring luxury garments and campaigns display even when external APIs are unreachable",
+    ],
+    problemStatement:
+      "Standard e-commerce platforms cater only to off-the-rack sizing and lack workflows for custom tailoring notes, monogram embroidery, and localized last-mile courier coordination.",
+    architectureOverview:
+      "Dual-view architecture transitioning between an editorial brand runway and transactional boutique, backed by an offline-resilient catalog, GSAP animation timeline, and Haversine proximity calculations.",
+    techStack: {
+      frontend: ["React", "Vite", "JavaScript", "GSAP", "CSS"],
+      tooling: ["Git", "GitHub", "Vercel"],
+    },
+    links: {
+      github: "https://github.com/ApedoG17/MENSAH-LEX",
+      live: "https://mensah-lex.vercel.app/",
+    },
+    images: [
+      "/images/mensah-preview.png",
+    ],
+    subsystems: [
+      {
+        id: "storefront",
+        name: "Editorial Runway",
+        badge: "Brand Experience",
+        description: "Cinematic brand presentation showcasing sartorial craftsmanship, Accra textile heritage, and private consult booking.",
+        screenshots: [
+          {
+            src: "/images/mensah-preview.png",
+            alt: "MENSAH Luxury Bespoke Tailoring & E-Commerce Storefront: Sartorial Dignity",
+            label: "Brand Runway & Atelier",
+            route: "mensah-lex.vercel.app",
+            caption: "Savile Row structure meets West African sartorial heritage",
+          },
+        ],
+      },
+      {
+        id: "fitting",
+        name: "Virtual Fitting Room",
+        badge: "Algorithmic Sizing",
+        description: "Conversational digital tailor collecting chest, waist, and hip metrics in cm to calculate tailored fit coordinates and confidence score.",
+        screenshots: [
+          {
+            src: "/images/mensah-preview.png",
+            alt: "MENSAH Measurement-Based Virtual Fitting Room",
+            label: "Conversational Sizing Assistant",
+            route: "mensah-lex.vercel.app/fitting",
+            caption: "Deterministic measurement-based fit scoring & tailor notes",
+          },
+        ],
+      },
+      {
+        id: "logistics",
+        name: "Spatial Courier Dispatch",
+        badge: "Haversine Proximity",
+        description: "Mathematical great-circle distance matching calculating closest Accra courier with animated vector route map.",
+        screenshots: [
+          {
+            src: "/images/mensah-preview.png",
+            alt: "MENSAH Spatial Courier Proximity Dispatcher",
+            label: "Logistics Proximity Map",
+            route: "mensah-lex.vercel.app/admin/logistics",
+            caption: "Haversine distance calculation & multi-stage delivery animation",
+          },
+        ],
+      },
+    ],
+    isFeatured: true,
+    isProvisional: false,
+    accentColor: "amber",
+  },
+  {
     slug: "chef-apedo-foods",
     title: "Chef Apedo Foods",
+    subtitle: "Full-Cycle Food Platform & Operations",
     tagline: "Full-cycle food ordering, real-time kitchen operations & courier dispatch platform",
+    shortDescription:
+      "Independent commercial initiative unifying customer ordering, a Supabase WebSocket kitchen display, financial ledger auditing, and a dedicated courier dispatch portal.",
     category: "Commercial Platform",
     scope: "Solo Product Designer & Developer",
     role: "Solo Product Designer & Developer",
@@ -102,11 +191,15 @@ export const PROJECTS: Project[] = [
     ],
     isFeatured: true,
     isProvisional: false,
+    accentColor: "purple",
   },
   {
     slug: "raku-vehicle-rental",
     title: "Raku Vehicle Rental Management System",
+    subtitle: "Fleet Inventory & Backoffice Engine",
     tagline: "Fleet inventory, client reservations & backoffice management engine",
+    shortDescription:
+      "University software engineering group project centralizing vehicle availability tracking, customer reservations, and approval workflows to eliminate double-booking errors.",
     category: "Academic Software Engineering",
     scope: "University Group Project",
     role: "Product/Client Manager & Primary Contributor",
@@ -182,5 +275,6 @@ export const PROJECTS: Project[] = [
     ],
     isFeatured: true,
     isProvisional: false,
+    accentColor: "blue",
   },
 ];
