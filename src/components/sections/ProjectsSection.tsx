@@ -516,7 +516,6 @@ export function ProjectsSection() {
   const mensah = PROJECTS.find((p) => p.slug === "mensah") ?? PROJECTS[0];
   const chefApedo = PROJECTS.find((p) => p.slug === "chef-apedo-foods") ?? PROJECTS[1];
   const raku = PROJECTS.find((p) => p.slug === "raku-vehicle-rental") ?? PROJECTS[2];
-  const davcie = PROJECTS.find((p) => p.slug === "davcie-foundation") ?? PROJECTS[3];
 
   return (
     <section
@@ -565,7 +564,7 @@ export function ProjectsSection() {
         <FeaturedProjectCard project={mensah} />
 
         {/* ── 2. COMPANION GRID: CHEF APEDO FOODS & RAKU RENTALS ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
           <CompanionProjectCard
             project={chefApedo}
             indexNumber="02"
@@ -586,17 +585,6 @@ export function ProjectsSection() {
             iconBg="#d5001c"
             accentColor="blue"
             caseStudyHref="/projects/raku"
-          />
-
-          <CompanionProjectCard
-            project={davcie}
-            indexNumber="04"
-            categoryLabel="NONPROFIT WEB PLATFORM"
-            roleBadge="Full-Stack Developer"
-            iconSrc="/images/davcie/davcie-emblem.png"
-            iconBg="#fdfaf0"
-            accentColor="blue"
-            caseStudyHref="/projects/davcie-foundation"
           />
         </div>
 
