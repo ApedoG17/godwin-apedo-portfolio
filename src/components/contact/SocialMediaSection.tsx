@@ -90,8 +90,7 @@ export function SocialMediaSection() {
       </div>
 
       {/* Subtle indicator bar */}
-      <div className="pt-4 flex items-center justify-between text-[11px] font-mono text-slate-400 border-t border-slate-100 mt-3">
-        <span>Verified Profile</span>
+      <div className="pt-4 flex items-center justify-end text-[11px] font-mono text-slate-400 border-t border-slate-100 mt-3">
         <span className="text-purple-700 font-medium group-hover:underline">
           View Profile &rarr;
         </span>
