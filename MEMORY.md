@@ -74,7 +74,7 @@ All 8 homepage sections and the dedicated `/contact` page are implemented and ac
 1. **Hero (`HeroSection.tsx`)** — *Implemented & Polished*
    - Two-column layout with bold headline (`text-gradient-white` and `text-gradient-teal`).
    - Borderless portrait (`/images/me-home-nobg.png`) with soft linear-gradient cloud mask fade strictly around lower torso.
-   - Dual floating glass info cards: Current Project (*Chef Apedo Foods*) and Degree/School (*Univ. of Ghana*).
+   - Dual floating glass info cards: Current Project (*Davcie Foundation*) and Degree/School (*Univ. of Ghana*).
    - Magnetic action buttons (*View My Work*, *Let's Connect*) and verified social link strip.
 2. **About Me (`AboutSection.tsx`)** — *Implemented & Polished*
    - First-person professional narrative focusing on practical problem-solving.

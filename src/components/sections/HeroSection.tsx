@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useReducedMotion } from "motion/react";
 import {
   ArrowRight,
@@ -10,6 +11,7 @@ import {
   MapPin,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
+import { PROJECTS } from "@/content/projects";
 import {
   MOTION_DURATIONS,
   MOTION_EASINGS,
@@ -20,6 +22,7 @@ import { Magnetic } from "@/components/core/magnetic";
 
 export function HeroSection() {
   const shouldReduceMotion = useReducedMotion();
+  const davcieProject = PROJECTS.find((p) => p.slug === "davcie-foundation");
 
   return (
     <section
@@ -243,13 +246,15 @@ export function HeroSection() {
             />
 
             {/* ── Floating Glass Card 1: Current Project (Top-Right) ── */}
-            <div
+            <Link
+              href={`/projects/${davcieProject?.slug ?? "davcie-foundation"}`}
               className="absolute top-16 -right-2 sm:top-20 sm:-right-4 md:-right-6 z-25 glass-card rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 animate-float shadow-lg max-w-[210px] sm:max-w-[235px] border border-purple-200/90 bg-white/95"
+              aria-label="Current Project: Davcie Foundation"
             >
               <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl overflow-hidden border border-purple-200/90 flex items-center justify-center shrink-0 shadow-sm bg-white crest-frame p-0.5">
                 <Image
-                  src="/images/chef_apedo_icon.png"
-                  alt="Chef Apedo Foods"
+                  src="/images/davcie/davcie-emblem.png"
+                  alt={davcieProject?.title ?? "Davcie Foundation"}
                   width={36}
                   height={36}
                   className="w-full h-full object-contain rounded-lg"
@@ -260,13 +265,13 @@ export function HeroSection() {
                   Current Project
                 </p>
                 <p className="text-xs font-bold text-slate-900 truncate">
-                  Chef Apedo Foods
+                  {davcieProject?.title ?? "Davcie Foundation"}
                 </p>
                 <p className="text-[10px] text-purple-600 font-mono font-medium">
-                  Online Food Ordering
+                  {davcieProject?.category ?? "Nonprofit Web Platform"}
                 </p>
               </div>
-            </div>
+            </Link>
 
             {/* ── Floating Glass Card 2: Academic Focus (Bottom-Left) ── */}
             <div

@@ -20,7 +20,7 @@
 - [x] **Hero Section (`HeroSection.tsx`)**:
   - Bold typography headline (`text-gradient-white` and `text-gradient-teal`).
   - Borderless portrait (`/images/me-home-nobg.png`) with lower torso cloud mask fade.
-  - Dual floating glass cards: Current Project (*Chef Apedo Foods*) and Degree/School (*Univ. of Ghana*).
+  - Dual floating glass cards: Current Project (*Davcie Foundation*) and Degree/School (*Univ. of Ghana*).
   - Magnetic action buttons and verified social link strip (GitHub, Email, LinkedIn, Accra location).
 - [x] **About Me Section (`AboutSection.tsx`)**:
   - First-person narrative focusing on real problem-solving and software builder identity.
