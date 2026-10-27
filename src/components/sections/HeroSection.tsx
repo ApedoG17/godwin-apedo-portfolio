@@ -177,25 +177,25 @@ export function HeroSection() {
               }}
             />
 
-            {/* ── Borderless Portrait with Soft Cloud Mask Fade ── */}
+            {/* ── Borderless Portrait with Smooth Atmospheric Blend ── */}
             <div
               className="relative w-full aspect-[3/4] z-10"
               style={{
                 maskImage:
-                  "linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0.92) 80%, rgba(0, 0, 0, 0.5) 88%, rgba(0, 0, 0, 0) 97%)",
+                  "radial-gradient(ellipse 52% 50% at 50% 46%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0.65) 86%, transparent 100%)",
                 WebkitMaskImage:
-                  "linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0.92) 80%, rgba(0, 0, 0, 0.5) 88%, rgba(0, 0, 0, 0) 97%)",
+                  "radial-gradient(ellipse 52% 50% at 50% 46%, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0.65) 86%, transparent 100%)",
               }}
             >
               <div className="relative w-full h-full">
                 <Image
-                  src="/images/me-home-nobg.png"
+                  src="/images/me-home.jpg"
                   alt="Godwin Mawulie Yaw Apedo — Computer Science Student, Product Manager & Software Builder"
                   fill
                   priority
                   sizes="(max-width: 640px) 340px, (max-width: 1024px) 400px, 440px"
-                  className="object-cover object-[center_top]"
-                  style={{ filter: "brightness(1.0) contrast(1.04)" }}
+                  className="object-cover object-[center_top] scale-125 origin-[50%_18%]"
+                  style={{ filter: "brightness(1.02) contrast(1.06)" }}
                 />
               </div>
             </div>
@@ -204,7 +204,7 @@ export function HeroSection() {
             {/* Broad atmospheric mist bed - Behind lower torso */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[120%] h-36 pointer-events-none z-5 hero-torso-mist"
+              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[120%] h-36 pointer-events-none z-5 hero-torso-mist"
               style={{
                 background:
                   "radial-gradient(ellipse 80% 55% at 50% 90%, #fbfbfe 45%, rgba(251, 251, 254, 0.95) 60%, rgba(245, 243, 255, 0.7) 80%, transparent 100%)",
@@ -212,10 +212,10 @@ export function HeroSection() {
               }}
             />
 
-            {/* Cloud puff - Left (Base only) */}
+            {/* Cloud puff - Left (Base only, soft backing) */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-6 -left-8 w-52 h-24 rounded-full pointer-events-none z-12 opacity-95 hero-cloud-puff-left"
+              className="absolute -bottom-8 -left-8 w-52 h-24 rounded-full pointer-events-none z-5 opacity-60 hero-cloud-puff-left"
               style={{
                 background:
                   "radial-gradient(circle at center, #ffffff 40%, rgba(245, 243, 255, 0.85) 68%, transparent 100%)",
@@ -223,10 +223,10 @@ export function HeroSection() {
               }}
             />
 
-            {/* Cloud puff - Right (Base only) */}
+            {/* Cloud puff - Right (Base only, soft backing) */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-6 -right-8 w-56 h-24 rounded-full pointer-events-none z-12 opacity-95 hero-cloud-puff-right"
+              className="absolute -bottom-8 -right-8 w-56 h-24 rounded-full pointer-events-none z-5 opacity-60 hero-cloud-puff-right"
               style={{
                 background:
                   "radial-gradient(circle at center, #ffffff 45%, rgba(238, 242, 255, 0.85) 68%, transparent 100%)",
@@ -234,10 +234,10 @@ export function HeroSection() {
               }}
             />
 
-            {/* Foreground cloud base roll (Base only) */}
+            {/* Foreground cloud base roll (Soft subtle grounding) */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-[90%] h-20 rounded-full pointer-events-none z-12 opacity-95 hero-cloud-roll"
+              className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[90%] h-20 rounded-full pointer-events-none z-5 opacity-50 hero-cloud-roll"
               style={{
                 background:
                   "radial-gradient(ellipse at center, #ffffff 55%, rgba(251, 251, 254, 0.95) 78%, transparent 100%)",
@@ -248,7 +248,7 @@ export function HeroSection() {
             {/* ── Floating Glass Card 1: Current Project (Top-Right) ── */}
             <Link
               href={`/projects/${davcieProject?.slug ?? "davcie-foundation"}`}
-              className="absolute top-16 -right-2 sm:top-20 sm:-right-4 md:-right-6 z-25 glass-card rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 animate-float shadow-lg max-w-[210px] sm:max-w-[235px] border border-purple-200/90 bg-white/95"
+              className="absolute -top-4 -right-1 sm:-top-5 sm:-right-3 lg:top-4 lg:-right-8 xl:-right-10 z-25 glass-card rounded-2xl p-2.5 sm:p-3.5 flex items-center gap-2.5 sm:gap-3 animate-float shadow-lg max-w-[200px] sm:max-w-[235px] border border-purple-200/90 bg-white/95"
               aria-label="Current Project: Davcie Foundation"
             >
               <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl overflow-hidden border border-purple-200/90 flex items-center justify-center shrink-0 shadow-sm bg-white crest-frame p-0.5">

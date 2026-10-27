@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { Sparkles, Pause, Play } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import { InfiniteSlider } from "@/components/core/infinite-slider";
 import { TextScramble } from "@/components/core/text-scramble";
 
@@ -230,8 +230,6 @@ const CATEGORIES: TechCategory[] = [
 ];
 
 export function TechShowcase() {
-  const [isPaused, setIsPaused] = React.useState(false);
-
   return (
     <section
       id="tech"
@@ -264,31 +262,9 @@ export function TechShowcase() {
             </h2>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-            <p className="text-xs sm:text-sm text-content-secondary max-w-md font-mono leading-relaxed">
-              Organized by discipline: development tools, visual &amp; product design, and core programming languages and frameworks.
-            </p>
-
-            {/* Accessible Section-level Pause/Resume Toggle */}
-            <button
-              type="button"
-              onClick={() => setIsPaused((prev) => !prev)}
-              aria-label={isPaused ? "Resume technology slider animations" : "Pause technology slider animations"}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-mono font-medium transition-all duration-200 border border-purple-200 dark:border-purple-400/30 bg-purple-50 dark:bg-purple-500/10 hover:bg-purple-100 dark:hover:bg-purple-500/20 text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-purple-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 cursor-pointer shrink-0 self-start sm:self-auto shadow-sm"
-            >
-              {isPaused ? (
-                <>
-                  <Play className="w-3.5 h-3.5 fill-current" />
-                  <span>Resume Sliders</span>
-                </>
-              ) : (
-                <>
-                  <Pause className="w-3.5 h-3.5 fill-current" />
-                  <span>Pause Sliders</span>
-                </>
-              )}
-            </button>
-          </div>
+          <p className="text-xs sm:text-sm text-content-secondary max-w-md font-mono leading-relaxed">
+            Organized by discipline: development tools, visual &amp; product design, and core programming languages and frameworks.
+          </p>
         </div>
 
         {/* ── Categorized Independent Sliders ── */}
@@ -330,7 +306,6 @@ export function TechShowcase() {
                   gap={18}
                   speed={category.speed}
                   speedOnHover={0}
-                  isPaused={isPaused}
                   className="w-full py-1"
                 >
                   {category.items.map((tech) => (
