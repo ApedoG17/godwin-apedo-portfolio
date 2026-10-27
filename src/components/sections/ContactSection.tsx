@@ -98,7 +98,7 @@ export function ContactSection() {
                     </p>
                     <a
                       href={`mailto:${SITE_CONFIG.links.email}`}
-                      className="font-bold text-sm sm:text-base text-slate-900 hover:text-purple-700 transition-colors"
+                      className="font-bold text-sm sm:text-base text-slate-900 dark:text-white hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
                     >
                       {SITE_CONFIG.links.email}
                     </a>
@@ -116,7 +116,7 @@ export function ContactSection() {
                   <p className="text-xs text-slate-500 font-mono uppercase tracking-wider">
                     Location &amp; University
                   </p>
-                  <p className="font-bold text-sm sm:text-base text-slate-900">
+                  <p className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
                     Accra, Ghana · University of Ghana
                   </p>
                 </div>

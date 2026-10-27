@@ -4,7 +4,6 @@
 
 @theme {
   /* === Core Light Palette === */
-  --color-base: #fbfbfe;
   --color-surface: rgba(255, 255, 255, 0.85);
   --color-surface-elevated: #ffffff;
   --color-surface-card: rgba(255, 255, 255, 0.78);
@@ -54,7 +53,12 @@
 }
 
 :root {
+  --color-base: #fbfbfe;
   color-scheme: light;
+}
+
+@utility bg-base {
+  background-color: var(--color-base, #fbfbfe);
 }
 
 html {
