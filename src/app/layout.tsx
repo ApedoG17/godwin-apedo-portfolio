@@ -70,7 +70,7 @@ export default function RootLayout({
           id="theme-persistence-check"
           strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem("godwin_theme");if(t==="dark"){document.documentElement.classList.add("dark")}else{document.documentElement.classList.remove("dark")}}catch(e){}`,
+            __html: `try{var t=localStorage.getItem("godwin_theme");if(t==="dark"||window.location.search.indexOf("theme=dark")!==-1){document.documentElement.classList.add("dark")}else{document.documentElement.classList.remove("dark")}}catch(e){}`,
           }}
         />
         <Script

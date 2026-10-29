@@ -1,10 +1,7 @@
 import { HeroSection } from "@/components/sections/HeroSection";
-import { AboutSection } from "@/components/sections/AboutSection";
-import { EducationSection } from "@/components/sections/EducationSection";
-import { ServicesSection } from "@/components/sections/ServicesSection";
-import { TechShowcase } from "@/components/sections/TechShowcase";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
-import { WorkingApproachSection } from "@/components/sections/WorkingApproachSection";
+import { CapabilitiesSection } from "@/components/sections/CapabilitiesSection";
+import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function Home() {
@@ -20,25 +17,16 @@ export default function Home() {
         {/* 1. Hero */}
         <HeroSection />
 
-        {/* 2. About Me */}
-        <AboutSection />
-
-        {/* 3. Education (Academic Progression Timeline) */}
-        <EducationSection />
-
-        {/* 4. What I Do (Areas of Capability) */}
-        <ServicesSection />
-
-        {/* 5. Tools & Technologies (Technology Showcase) */}
-        <TechShowcase />
-
-        {/* 6. Featured Projects */}
+        {/* 2. Selected Projects */}
         <ProjectsSection />
 
-        {/* 7. Working Approach (Engineering Methodology) */}
-        <WorkingApproachSection />
+        {/* 3. Capabilities & Tech Stack */}
+        <CapabilitiesSection />
 
-        {/* 8. Polished Glass Contact Section */}
+        {/* 4. Experience & Education */}
+        <ExperienceSection />
+
+        {/* 5. Polished Glass Contact Section */}
         <ContactSection />
       </main>
     </div>

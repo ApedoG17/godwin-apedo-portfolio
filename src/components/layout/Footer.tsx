@@ -23,7 +23,7 @@ export function Footer() {
           </div>
           <p className="text-slate-800 font-medium">© 2026 {SITE_CONFIG.name}</p>
           <span className="hidden sm:inline text-slate-300">·</span>
-          <p className="text-slate-500">CS Student &amp; Software Builder</p>
+          <p className="text-slate-500">Product-minded Developer</p>
         </div>
 
         {/* Links */}

@@ -3,9 +3,9 @@ import { SiteConfig } from "@/types";
 export const SITE_CONFIG: SiteConfig = {
   name: "Godwin Apedo",
   title: "Meet Godwin Apedo",
-  role: "Computer Science Student, Product Manager & Software Builder",
+  role: "Product-minded Developer",
   shortBio:
-    "Computer Science student focused on building practical, reliable digital products and solving real-world problems.",
+    "I design and build digital products, combining software development, product thinking, and thoughtful design to solve real problems.",
   status: "Available for internships & software projects",
   links: {
     github: "https://github.com/ApedoG17",

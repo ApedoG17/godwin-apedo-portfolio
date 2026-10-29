@@ -77,8 +77,8 @@ export const MOTION_SPRINGS: Record<string, SpringOptions> = {
 
 /* ── 6. Viewport Defaults ── */
 export const MOTION_VIEWPORT = {
-  /** Trigger animation once when 40px inside viewport */
-  default: { once: true, margin: "-40px" },
+  /** Trigger animation once when inside viewport */
+  default: { once: true, amount: 0.05 },
   /** Conservative trigger with 15% intersection */
   amount15: { once: true, amount: 0.15 },
 } as const;
@@ -102,7 +102,7 @@ export function getFadeInUp({
   const isReduced = Boolean(shouldReduceMotion);
   return {
     initial: {
-      opacity: 0,
+      opacity: isReduced ? 1 : 0,
       y: isReduced ? 0 : distance,
     },
     animate: {
@@ -131,7 +131,7 @@ export function getStaggerContainerVariants({
 } = {}): Variants {
   const isReduced = Boolean(shouldReduceMotion);
   return {
-    hidden: { opacity: 0 },
+    hidden: { opacity: isReduced ? 1 : 0 },
     visible: {
       opacity: 1,
       transition: {
@@ -157,7 +157,7 @@ export function getStaggerItemVariants({
   const isReduced = Boolean(shouldReduceMotion);
   return {
     hidden: {
-      opacity: 0,
+      opacity: isReduced ? 1 : 0,
       y: isReduced ? 0 : distance,
     },
     visible: {
@@ -186,7 +186,7 @@ export function getTabContentVariants({
   const isReduced = Boolean(shouldReduceMotion);
   return {
     initial: {
-      opacity: 0,
+      opacity: isReduced ? 1 : 0,
       y: isReduced ? 0 : distance,
     },
     animate: {
@@ -198,7 +198,7 @@ export function getTabContentVariants({
       },
     },
     exit: {
-      opacity: 0,
+      opacity: isReduced ? 1 : 0,
       y: isReduced ? 0 : -distance,
       transition: {
         duration: isReduced ? MOTION_DURATIONS.instant : duration * 0.75,

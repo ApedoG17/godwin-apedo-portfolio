@@ -33,32 +33,32 @@ export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [active, setActive] = React.useState(
-    isContactPage ? "Contact" : isProjectsPage ? "Work" : "Home"
+    isContactPage ? "Contact" : isProjectsPage ? "Projects" : "Home"
   );
 
   const navItems: NavItem[] = React.useMemo(() => {
     if (isSubpage) {
       return [
         { label: "Home", href: "/#top", isExternalRoute: true },
-        { label: "About", href: "/#about", isExternalRoute: true },
-        { label: "What I Do", href: "/#services", isExternalRoute: true },
-        { label: "Work", href: "/projects", isExternalRoute: true },
+        { label: "Projects", href: "/#work", isExternalRoute: true },
+        { label: "Capabilities", href: "/#capabilities", isExternalRoute: true },
+        { label: "Experience", href: "/#experience", isExternalRoute: true },
         { label: "Contact", href: "/contact", isExternalRoute: true },
       ];
     }
     return [
       { label: "Home", href: "#top" },
-      { label: "About", href: "#about" },
-      { label: "What I Do", href: "#services" },
-      { label: "Work", href: "/projects", isExternalRoute: true },
-      { label: "Contact", href: "/contact", isExternalRoute: true },
+      { label: "Projects", href: "#work" },
+      { label: "Capabilities", href: "#capabilities" },
+      { label: "Experience", href: "#experience" },
+      { label: "Contact", href: "#contact" },
     ];
   }, [isSubpage]);
 
   React.useEffect(() => {
     if (isSubpage) {
       if (isContactPage) setActive("Contact");
-      if (isProjectsPage) setActive("Work");
+      if (isProjectsPage) setActive("Projects");
 
       const handleSubpageScroll = () => {
         setScrolled(window.scrollY > 20);
@@ -73,9 +73,9 @@ export function Navbar() {
       // Section intersection detection for active state
       const sections = [
         { id: "top", label: "Home", top: 0 },
-        { id: "about", label: "About" },
-        { id: "services", label: "What I Do" },
-        { id: "work", label: "Work" },
+        { id: "work", label: "Projects" },
+        { id: "capabilities", label: "Capabilities" },
+        { id: "experience", label: "Experience" },
         { id: "contact", label: "Contact" },
       ].map((item) => {
         if (item.id === "top") return { ...item, top: 0 };

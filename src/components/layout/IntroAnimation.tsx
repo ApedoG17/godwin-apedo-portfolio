@@ -171,7 +171,7 @@ export function IntroAnimation() {
           }}
           className="mt-3.5 sm:mt-4 text-xs sm:text-sm font-mono tracking-[0.15em] sm:tracking-[0.22em] text-slate-400 uppercase"
         >
-          Computer Science Student <span className="text-purple-400 mx-1.5 sm:mx-2">·</span> Software Builder
+          Product-minded Developer
         </motion.p>
       </div>
     </motion.div>

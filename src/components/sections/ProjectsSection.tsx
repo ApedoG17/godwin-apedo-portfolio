@@ -12,7 +12,7 @@ import {
   CheckCircle2,
   Lock,
   Layers,
-  ShoppingBag,
+  HeartHandshake,
 } from "lucide-react";
 import { PROJECTS } from "@/content/projects";
 import { Project, ProjectScreenshot } from "@/types";
@@ -159,42 +159,42 @@ function ScreenshotFrame({
   );
 }
 
-// ── FEATURED FLAGSHIP SPOTLIGHT: MENSAH ──
+// ── 01. FEATURED FLAGSHIP SPOTLIGHT: DAVCIE FOUNDATION ──
 function FeaturedProjectCard({ project }: { project: Project }) {
   const shouldReduceMotion = useReducedMotion();
   const primaryScreenshot: ProjectScreenshot = project.subsystems?.[0]?.screenshots?.[0] ?? {
-    src: project.images?.[0] ?? "/images/mensah-preview.png",
-    alt: "MENSAH Luxury Bespoke Tailoring & E-Commerce Storefront",
-    label: "Brand Atelier & Mall",
-    route: "mensah-lex.vercel.app",
-    caption: "Savile Row structure meets West African sartorial heritage",
+    src: project.images?.[0] ?? "/images/davcie/davcie-logo.jpg",
+    alt: "Davcie Foundation Platform Hero",
+    label: "Foundation Platform",
+    route: "davciefoundation.org",
+    caption: "Empowering young lives beyond diabetes",
   };
 
   return (
     <Tilt rotationFactor={6} perspective={1000} className="w-full">
       <motion.article
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : MOTION_DISTANCES.prominent }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: MOTION_DISTANCES.prominent }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={MOTION_VIEWPORT.default}
         transition={{
           duration: shouldReduceMotion ? MOTION_DURATIONS.instant : MOTION_DURATIONS.deliberate,
           ease: MOTION_EASINGS.easeOut,
         }}
-        className="glass-panel rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-amber-200/90 dark:border-amber-400/25 shadow-[0_20px_50px_rgba(217,119,6,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative group/card bg-white/90 dark:bg-slate-900/70"
+        className="glass-panel rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-blue-200/90 dark:border-blue-400/25 shadow-[0_20px_50px_rgba(59,130,246,0.06)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] relative group/card bg-white/90 dark:bg-slate-900/70"
       >
-        <Spotlight className="from-amber-500/12 via-purple-500/6 to-transparent" size={500} />
+        <Spotlight className="from-blue-500/12 via-purple-500/6 to-transparent" size={500} />
 
         <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 p-6 sm:p-8 lg:p-10 items-center">
           {/* ── LEFT COLUMN: Real Interface Screenshot ── */}
           <div className="lg:col-span-7 flex flex-col gap-3">
-            <ScreenshotFrame screenshot={primaryScreenshot} priority accentColor="amber" />
+            <ScreenshotFrame screenshot={primaryScreenshot} priority accentColor="blue" />
             <div className="flex items-center justify-between text-xs font-mono text-slate-500 dark:text-slate-400 px-1 pt-1">
               <span className="flex items-center gap-1.5">
-                <ShoppingBag className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
-                Luxury E-Commerce &amp; Spatial Logistics
+                <HeartHandshake className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400" />
+                Nonprofit Platform &amp; Health Hub
               </span>
-              <span className="text-amber-700 dark:text-amber-400 font-medium">
-                Dual-View Atelier
+              <span className="text-blue-700 dark:text-blue-400 font-medium">
+                Live Community Build
               </span>
             </div>
           </div>
@@ -203,22 +203,22 @@ function FeaturedProjectCard({ project }: { project: Project }) {
           <div className="lg:col-span-5 flex flex-col justify-between space-y-5">
             {/* Classification & Role Badge */}
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
+              <span className="font-mono text-xs font-bold uppercase tracking-wider text-blue-700 dark:text-blue-400 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5" />
                 01 • FEATURED SPOTLIGHT
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-amber-50 dark:bg-amber-500/10 text-amber-800 dark:text-amber-200 border border-amber-200/80 dark:border-amber-400/30">
-                Hackathon Prototype
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-mono font-semibold bg-blue-50 dark:bg-blue-500/10 text-blue-800 dark:text-blue-200 border border-blue-200/80 dark:border-blue-400/30">
+                Nonprofit Client Collaboration
               </span>
             </div>
 
             {/* Title & Brand Emblem */}
             <div className="space-y-1.5">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-amber-200/90 dark:border-amber-400/30 bg-slate-950 p-1 flex items-center justify-center shadow-xs">
+                <div className="w-10 h-10 rounded-xl overflow-hidden shrink-0 border border-blue-200/90 dark:border-blue-400/30 bg-white p-1 flex items-center justify-center shadow-xs">
                   <Image
-                    src="/images/mensah-logo.png"
-                    alt="MENSAH logo"
+                    src="/images/davcie/davcie-emblem.png"
+                    alt="Davcie Foundation emblem"
                     width={40}
                     height={40}
                     className="w-full h-full object-contain"
@@ -228,7 +228,7 @@ function FeaturedProjectCard({ project }: { project: Project }) {
                   <h3 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white tracking-tight">
                     {project.title}
                   </h3>
-                  <p className="text-xs sm:text-sm font-semibold text-amber-700 dark:text-amber-400">
+                  <p className="text-xs sm:text-sm font-semibold text-blue-700 dark:text-blue-400">
                     {project.subtitle}
                   </p>
                 </div>
@@ -246,16 +246,16 @@ function FeaturedProjectCard({ project }: { project: Project }) {
               </p>
               <ul className="space-y-1.5 text-xs text-content-secondary dark:text-slate-300">
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-                  <span>Deterministic measurement-based virtual fitting assistant</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
+                  <span>Interactive diabetes learning suite with 3D flip cards &amp; randomized quiz</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-                  <span>Haversine spherical distance courier matching &amp; animated route map</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
+                  <span>14-piece vector emblem reassembly animation powered by Framer Motion</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
-                  <span>Bespoke monogram embroidery, WhatsApp checkout &amp; fallback catalog</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />
+                  <span>Administrative backoffice with proxy request gating &amp; Paystack donation flow</span>
                 </li>
               </ul>
             </div>
@@ -266,43 +266,31 @@ function FeaturedProjectCard({ project }: { project: Project }) {
                 {[
                   ...(project.techStack.frontend ?? []),
                   ...(project.techStack.tooling ?? []),
-                ].map((t) => (
-                  <TechBadge key={t} name={t} />
-                ))}
+                ]
+                  .slice(0, 6)
+                  .map((t) => (
+                    <TechBadge key={t} name={t} />
+                  ))}
               </div>
 
               <div className="flex flex-wrap items-center gap-3 pt-1">
-                {/* Future Case Study Link */}
                 <Link
-                  href="/projects/mensah"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-slate-900 hover:bg-slate-800 text-white dark:bg-amber-600 dark:hover:bg-amber-500 shadow-sm hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+                  href="/projects/davcie-foundation"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition-all bg-slate-900 hover:bg-slate-800 text-white dark:bg-blue-600 dark:hover:bg-blue-500 shadow-sm hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
                 >
                   <span>View Case Study</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
 
-                {/* External Verified Live Prototype */}
-                {project.links.live && (
-                  <a
-                    href={project.links.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm glass-card border-slate-200/90 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:text-amber-700 dark:hover:text-amber-300 transition-colors"
-                  >
-                    <span>Live Prototype</span>
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </a>
-                )}
-
-                {/* GitHub Repository */}
                 {project.links.github && (
                   <a
                     href={project.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs font-mono text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm glass-card border-slate-200/90 dark:border-white/10 text-slate-800 dark:text-slate-200 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
                   >
-                    GitHub ↗
+                    <span>GitHub Code</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 )}
               </div>
@@ -314,7 +302,7 @@ function FeaturedProjectCard({ project }: { project: Project }) {
   );
 }
 
-// ── COMPANION PROJECT CARD (Chef Apedo Foods & Raku) ──
+// ── COMPANION PROJECT CARD (MENSAH & RAKU) ──
 function CompanionProjectCard({
   project,
   indexNumber,
@@ -331,25 +319,34 @@ function CompanionProjectCard({
   roleBadge: string;
   iconSrc?: string;
   iconBg?: string;
-  accentColor: "purple" | "blue";
+  accentColor: "purple" | "blue" | "amber";
   caseStudyHref: string;
 }) {
   const shouldReduceMotion = useReducedMotion();
+  const isAmber = accentColor === "amber";
   const isPurple = accentColor === "purple";
 
-  const cardBorder = isPurple
+  const cardBorder = isAmber
+    ? "border-amber-200/90 hover:border-amber-300 dark:border-amber-400/20 dark:hover:border-amber-400/40"
+    : isPurple
     ? "border-purple-200/90 hover:border-purple-300 dark:border-purple-400/20 dark:hover:border-purple-400/40"
     : "border-blue-200/90 hover:border-blue-300 dark:border-blue-400/20 dark:hover:border-blue-400/40";
 
-  const categoryColor = isPurple
+  const categoryColor = isAmber
+    ? "text-amber-700 dark:text-amber-300"
+    : isPurple
     ? "text-purple-700 dark:text-purple-300"
     : "text-blue-700 dark:text-blue-300";
 
-  const roleBg = isPurple
+  const roleBg = isAmber
+    ? "bg-amber-50 dark:bg-amber-500/10 text-amber-800 dark:text-amber-200 border-amber-200/80 dark:border-amber-400/30"
+    : isPurple
     ? "bg-purple-50 dark:bg-purple-500/10 text-purple-800 dark:text-purple-200 border-purple-200/80 dark:border-purple-400/30"
     : "bg-blue-50 dark:bg-blue-500/10 text-blue-800 dark:text-blue-200 border-blue-200/80 dark:border-blue-400/30";
 
-  const spotlightGradient = isPurple
+  const spotlightGradient = isAmber
+    ? "from-amber-500/12 via-orange-500/5 to-transparent"
+    : isPurple
     ? "from-purple-500/12 via-indigo-500/5 to-transparent"
     : "from-blue-500/12 via-indigo-500/5 to-transparent";
 
@@ -364,7 +361,7 @@ function CompanionProjectCard({
   return (
     <Tilt rotationFactor={5} perspective={1000} className="w-full h-full">
       <motion.article
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : MOTION_DISTANCES.default }}
+        initial={shouldReduceMotion ? false : { opacity: 0, y: MOTION_DISTANCES.default }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={MOTION_VIEWPORT.default}
         transition={{
@@ -382,7 +379,13 @@ function CompanionProjectCard({
               {indexNumber} • {categoryLabel}
             </span>
             <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-mono font-semibold border ${roleBg}`}>
-              {isPurple ? <Sparkles className="w-3 h-3 text-purple-600" /> : <Users className="w-3 h-3 text-blue-600" />}
+              {isAmber ? (
+                <Sparkles className="w-3 h-3 text-amber-600" />
+              ) : isPurple ? (
+                <Sparkles className="w-3 h-3 text-purple-600" />
+              ) : (
+                <Users className="w-3 h-3 text-blue-600" />
+              )}
               {roleBadge}
             </span>
           </div>
@@ -465,7 +468,6 @@ function CompanionProjectCard({
 
           <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
             <div className="flex items-center gap-2.5">
-              {/* Future Case Study Link */}
               <Link
                 href={caseStudyHref}
                 className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl font-semibold text-xs transition-all bg-slate-900 hover:bg-slate-800 text-white dark:bg-white/[0.1] dark:hover:bg-white/[0.16] dark:text-white shadow-2xs hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-600"
@@ -474,7 +476,6 @@ function CompanionProjectCard({
                 <ArrowRight className="w-3 h-3" />
               </Link>
 
-              {/* External Live Demo */}
               {project.links.live && (
                 <a
                   href={project.links.live}
@@ -493,10 +494,10 @@ function CompanionProjectCard({
                 <Lock className="w-3 h-3 text-slate-400" />
                 Coursework
               </span>
-            ) : project.slug === "davcie-foundation" ? (
-              <span className="text-[11px] font-mono text-blue-700 dark:text-blue-300 flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-                Nonprofit Collaboration
+            ) : project.slug === "mensah" ? (
+              <span className="text-[11px] font-mono text-amber-700 dark:text-amber-300 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-600" />
+                Hackathon
               </span>
             ) : (
               <span className="text-[11px] font-mono text-purple-700 dark:text-purple-300 flex items-center gap-1">
@@ -513,8 +514,8 @@ function CompanionProjectCard({
 
 // ── MAIN PROJECTS SECTION COMPONENT ──
 export function ProjectsSection() {
-  const mensah = PROJECTS.find((p) => p.slug === "mensah") ?? PROJECTS[0];
-  const chefApedo = PROJECTS.find((p) => p.slug === "chef-apedo-foods") ?? PROJECTS[1];
+  const davcie = PROJECTS.find((p) => p.slug === "davcie-foundation") ?? PROJECTS[0];
+  const mensah = PROJECTS.find((p) => p.slug === "mensah") ?? PROJECTS[1];
   const raku = PROJECTS.find((p) => p.slug === "raku-vehicle-rental") ?? PROJECTS[2];
 
   return (
@@ -545,7 +546,7 @@ export function ProjectsSection() {
               Selected Projects & Systems
             </TextEffect>
             <p className="text-xs sm:text-sm text-content-secondary dark:text-slate-400 max-w-xl font-mono leading-relaxed">
-              Curated previews of commercial platforms, software engineering systems, and luxury digital architecture.
+              Curated builds spanning non-profit health platforms, luxury digital couture, and university software engineering systems.
             </p>
           </div>
 
@@ -560,20 +561,20 @@ export function ProjectsSection() {
           </a>
         </div>
 
-        {/* ── 1. FEATURED FLAGSHIP SPOTLIGHT: MENSAH ── */}
-        <FeaturedProjectCard project={mensah} />
+        {/* ── 1. FEATURED FLAGSHIP SPOTLIGHT: DAVCIE FOUNDATION ── */}
+        <FeaturedProjectCard project={davcie} />
 
-        {/* ── 2. COMPANION GRID: CHEF APEDO FOODS & RAKU RENTALS ── */}
+        {/* ── 2. COMPANION GRID: MENSAH & RAKU RENTALS ── */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
           <CompanionProjectCard
-            project={chefApedo}
+            project={mensah}
             indexNumber="02"
-            categoryLabel="COMMERCIAL PLATFORM"
-            roleBadge="Solo Product Designer & Developer"
-            iconSrc="/images/chef_apedo_icon.png"
-            iconBg="#ffffff"
-            accentColor="purple"
-            caseStudyHref="/projects/chef-apedo-foods"
+            categoryLabel="LUXURY E-COMMERCE"
+            roleBadge="Sole Creator & Frontend"
+            iconSrc="/images/mensah-logo.png"
+            iconBg="#000000"
+            accentColor="amber"
+            caseStudyHref="/projects/mensah"
           />
 
           <CompanionProjectCard

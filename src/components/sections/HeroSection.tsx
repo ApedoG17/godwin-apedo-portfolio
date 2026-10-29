@@ -28,13 +28,13 @@ export function HeroSection() {
     <section
       id="top"
       aria-label="Introduction"
-      className="relative w-full flex flex-col pt-24 sm:pt-28 pb-6 sm:pb-8"
+      className="relative w-full flex flex-col pt-24 sm:pt-28 pb-8 sm:pb-12"
     >
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center py-2 sm:py-4">
 
         {/* ── LEFT: Typography & Bio (7 cols) ── */}
         <motion.div
-          initial={{ opacity: 0, y: shouldReduceMotion ? 0 : MOTION_DISTANCES.prominent }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: MOTION_DISTANCES.prominent }}
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: shouldReduceMotion ? MOTION_DURATIONS.instant : MOTION_DURATIONS.deliberate,
@@ -66,26 +66,21 @@ export function HeroSection() {
 
           {/* Subtitle / Focus */}
           <div className="space-y-2 max-w-xl">
-            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-              Computer Science Student, Product Manager &amp; Software Builder
+            <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
+              Product-minded Developer
             </h2>
-            <p className="text-sm sm:text-base text-content-secondary leading-relaxed">
-              Studying Computer Science at the{" "}
-              <strong className="text-slate-900 font-semibold">
-                University of Ghana
-              </strong>
-              . I craft purposeful digital experiences and build robust, full-stack
-              software systems designed to solve real operational problems.
+            <p className="text-sm sm:text-base text-content-secondary dark:text-slate-300 leading-relaxed">
+              I design and build digital products, combining software development, product thinking, and thoughtful design to solve real problems.
             </p>
           </div>
 
           {/* Social Links Row */}
-          <div className="flex items-center gap-4 sm:gap-6 flex-wrap text-xs sm:text-sm font-mono text-content-secondary">
+          <div className="flex items-center gap-4 sm:gap-6 flex-wrap text-xs sm:text-sm font-mono text-content-secondary dark:text-slate-400">
             <a
               href={SITE_CONFIG.links.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-purple-600 transition-colors"
+              className="flex items-center gap-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               aria-label="GitHub Profile @ApedoG17"
             >
               <svg
@@ -98,21 +93,21 @@ export function HeroSection() {
               </svg>
               <span>@ApedoG17</span>
             </a>
-            <span className="w-px h-3.5 bg-slate-200" aria-hidden="true" />
+            <span className="w-px h-3.5 bg-slate-200 dark:bg-white/10" aria-hidden="true" />
             <a
               href={`mailto:${SITE_CONFIG.links.email}`}
-              className="flex items-center gap-2 hover:text-purple-600 transition-colors"
+              className="flex items-center gap-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               aria-label="Send email"
             >
               <Mail className="h-4 w-4" />
               <span>Email</span>
             </a>
-            <span className="w-px h-3.5 bg-slate-200" aria-hidden="true" />
+            <span className="w-px h-3.5 bg-slate-200 dark:bg-white/10" aria-hidden="true" />
             <a
               href={SITE_CONFIG.links.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:text-purple-600 transition-colors"
+              className="flex items-center gap-2 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
               aria-label="LinkedIn Profile"
             >
               <svg
@@ -125,9 +120,9 @@ export function HeroSection() {
               </svg>
               <span>LinkedIn</span>
             </a>
-            <span className="w-px h-3.5 bg-slate-200" aria-hidden="true" />
-            <span className="flex items-center gap-1.5 text-content-muted">
-              <MapPin className="h-3.5 w-3.5 text-purple-600" />
+            <span className="w-px h-3.5 bg-slate-200 dark:bg-white/10" aria-hidden="true" />
+            <span className="flex items-center gap-1.5 text-content-muted dark:text-slate-400">
+              <MapPin className="h-3.5 w-3.5 text-purple-600 dark:text-purple-400" />
               <span>Accra, Ghana</span>
             </span>
           </div>
@@ -155,7 +150,7 @@ export function HeroSection() {
 
         {/* ── RIGHT: Prominent Portrait + Floating Glass Info Cards (5 cols) ── */}
         <motion.div
-          initial={{ opacity: 0, scale: shouldReduceMotion ? 1 : 0.96 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
             duration: shouldReduceMotion ? MOTION_DURATIONS.instant : MOTION_DURATIONS.deliberate,
@@ -190,7 +185,7 @@ export function HeroSection() {
               <div className="relative w-full h-full">
                 <Image
                   src="/images/me-home.jpg"
-                  alt="Godwin Mawulie Yaw Apedo — Computer Science Student, Product Manager & Software Builder"
+                  alt="Godwin Mawulie Yaw Apedo — Product-minded Developer"
                   fill
                   priority
                   sizes="(max-width: 640px) 340px, (max-width: 1024px) 400px, 440px"
@@ -248,10 +243,10 @@ export function HeroSection() {
             {/* ── Floating Glass Card 1: Current Project (Top-Right) ── */}
             <Link
               href={`/projects/${davcieProject?.slug ?? "davcie-foundation"}`}
-              className="absolute -top-4 -right-1 sm:-top-5 sm:-right-3 lg:top-4 lg:-right-8 xl:-right-10 z-25 glass-card rounded-2xl p-2.5 sm:p-3.5 flex items-center gap-2.5 sm:gap-3 animate-float shadow-lg max-w-[200px] sm:max-w-[235px] border border-purple-200/90 bg-white/95"
+              className="absolute -top-4 -right-1 sm:-top-5 sm:-right-3 lg:top-4 lg:-right-8 xl:-right-10 z-25 glass-card rounded-2xl p-2.5 sm:p-3.5 flex items-center gap-2.5 sm:gap-3 animate-float shadow-lg max-w-[200px] sm:max-w-[235px] border border-purple-200/90 dark:border-white/10 bg-white/95 dark:bg-slate-900/90"
               aria-label="Current Project: Davcie Foundation"
             >
-              <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl overflow-hidden border border-purple-200/90 flex items-center justify-center shrink-0 shadow-sm bg-white crest-frame p-0.5">
+              <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl overflow-hidden border border-purple-200/90 dark:border-white/10 flex items-center justify-center shrink-0 shadow-sm bg-white dark:bg-slate-800 crest-frame p-0.5">
                 <Image
                   src="/images/davcie/davcie-emblem.png"
                   alt={davcieProject?.title ?? "Davcie Foundation"}
@@ -261,13 +256,13 @@ export function HeroSection() {
                 />
               </div>
               <div className="min-w-0">
-                <p className="text-[9px] sm:text-[10px] font-mono text-content-muted uppercase tracking-wider font-semibold">
+                <p className="text-[9px] sm:text-[10px] font-mono text-content-muted dark:text-slate-400 uppercase tracking-wider font-semibold">
                   Current Project
                 </p>
-                <p className="text-xs font-bold text-slate-900 truncate">
+                <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
                   {davcieProject?.title ?? "Davcie Foundation"}
                 </p>
-                <p className="text-[10px] text-purple-600 font-mono font-medium">
+                <p className="text-[10px] text-purple-600 dark:text-purple-400 font-mono font-medium">
                   {davcieProject?.category ?? "Nonprofit Web Platform"}
                 </p>
               </div>
@@ -275,24 +270,24 @@ export function HeroSection() {
 
             {/* ── Floating Glass Card 2: Academic Focus (Bottom-Left) ── */}
             <div
-              className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-4 md:-left-6 z-25 glass-card rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 shadow-lg max-w-[210px] sm:max-w-[240px] border border-indigo-200/90 bg-white/95"
+              className="absolute -bottom-2 -left-2 sm:-bottom-3 sm:-left-4 md:-left-6 z-25 glass-card rounded-2xl p-3 sm:p-3.5 flex items-center gap-3 shadow-lg max-w-[210px] sm:max-w-[240px] border border-indigo-200/90 dark:border-white/10 bg-white/95 dark:bg-slate-900/90"
               style={{
                 animation: shouldReduceMotion
                   ? "none"
                   : "float-y 5s ease-in-out infinite reverse",
               }}
             >
-              <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-indigo-50 border border-indigo-200 flex items-center justify-center text-indigo-600 shrink-0 shadow-sm">
+              <div className="w-8 sm:w-9 h-8 sm:h-9 rounded-xl bg-indigo-50 dark:bg-indigo-500/20 border border-indigo-200 dark:border-indigo-400/30 flex items-center justify-center text-indigo-600 dark:text-indigo-400 shrink-0 shadow-sm">
                 <GraduationCap className="w-4 h-4" />
               </div>
               <div className="min-w-0">
-                <p className="text-[9px] sm:text-[10px] font-mono text-content-muted uppercase tracking-wider font-semibold">
+                <p className="text-[9px] sm:text-[10px] font-mono text-content-muted dark:text-slate-400 uppercase tracking-wider font-semibold">
                   Degree &amp; School
                 </p>
-                <p className="text-xs font-bold text-slate-900 truncate">
+                <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
                   BSc Computer Science
                 </p>
-                <p className="text-[10px] text-indigo-600 font-mono font-medium">
+                <p className="text-[10px] text-indigo-600 dark:text-indigo-400 font-mono font-medium">
                   Univ. of Ghana
                 </p>
               </div>
@@ -302,66 +297,6 @@ export function HeroSection() {
         </motion.div>
 
       </div>
-
-      {/* ── Bottom Highlights Strip ── */}
-      <motion.div
-        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : MOTION_DISTANCES.default }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: shouldReduceMotion ? MOTION_DURATIONS.instant : MOTION_DURATIONS.moderate,
-          ease: MOTION_EASINGS.easeOut,
-          delay: shouldReduceMotion ? 0 : 0.35,
-        }}
-        className="relative z-10 grid grid-cols-2 sm:grid-cols-4 gap-4 pt-8 mt-6 border-t border-slate-200/80"
-      >
-        <div className="glass-card rounded-2xl p-4 flex flex-col gap-1 border-slate-200/80">
-          <span className="text-xs font-mono text-content-muted uppercase tracking-wider">
-            Academic Track
-          </span>
-          <span className="font-bold text-sm text-slate-900">
-            BSc Computer Science
-          </span>
-          <span className="text-xs text-purple-600 font-mono font-medium">
-            University of Ghana
-          </span>
-        </div>
-
-        <div className="glass-card rounded-2xl p-4 flex flex-col gap-1 border-slate-200/80">
-          <span className="text-xs font-mono text-content-muted uppercase tracking-wider">
-            Flagship Build
-          </span>
-          <span className="font-bold text-sm text-slate-900">
-            Chef Apedo Foods
-          </span>
-          <span className="text-xs text-purple-600 font-mono font-medium">
-            Solo Product Initiative
-          </span>
-        </div>
-
-        <div className="glass-card rounded-2xl p-4 flex flex-col gap-1 border-slate-200/80">
-          <span className="text-xs font-mono text-content-muted uppercase tracking-wider">
-            Engineering Teamwork
-          </span>
-          <span className="font-bold text-sm text-slate-900">
-            Raku Rental System
-          </span>
-          <span className="text-xs text-purple-600 font-mono font-medium">
-            Team Software Coursework
-          </span>
-        </div>
-
-        <div className="glass-card rounded-2xl p-4 flex flex-col gap-1 border-slate-200/80">
-          <span className="text-xs font-mono text-content-muted uppercase tracking-wider">
-            Development Mindset
-          </span>
-          <span className="font-bold text-sm text-slate-900">
-            Purposeful &amp; Tested
-          </span>
-          <span className="text-xs text-purple-600 font-mono font-medium">
-            Clean Architecture
-          </span>
-        </div>
-      </motion.div>
     </section>
   );
 }
