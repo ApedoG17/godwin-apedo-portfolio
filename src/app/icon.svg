@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#140f2b"/>
+      <stop offset="100%" stop-color="#080711"/>
+    </linearGradient>
+    <radialGradient id="topGlow" cx="28%" cy="20%" r="65%">
+      <stop offset="0%" stop-color="rgba(168, 85, 247, 0.35)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+    <linearGradient id="violetBar" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#c084fc"/>
+      <stop offset="50%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="letterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f8fafc"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Outer Squircle with Margins to prevent any clipping -->
+  <rect x="12" y="12" width="488" height="488" rx="116" fill="url(#bgGrad)"/>
+  <rect x="12" y="12" width="488" height="488" rx="116" fill="url(#topGlow)"/>
+  <rect x="18" y="18" width="476" height="476" rx="110" fill="none" stroke="rgba(168, 85, 247, 0.45)" stroke-width="12"/>
+  
+  <!-- Letter G: Bold circular sweep with distinct horizontal bar -->
+  <path d="M 248 194 C 228 152 186 136 142 148 C 88 164 60 216 60 268 C 60 322 92 374 148 376 C 206 378 248 344 252 284 L 164 284" 
+        fill="none" stroke="url(#letterGrad)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Letter A: Clean angled legs -->
+  <path d="M 288 376 L 366 136 L 444 376" 
+        fill="none" stroke="url(#letterGrad)" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Signature Geometric Violet Wedge inside A -->
+  <polygon points="366,198 322,300 410,300" fill="url(#violetBar)"/>
+</svg>

@@ -29,9 +29,12 @@ export const metadata: Metadata = {
   description: SITE_CONFIG.shortBio,
   authors: [{ name: SITE_CONFIG.name }],
   icons: {
-    icon: "/images/godwin-apedo-icon.png",
-    shortcut: "/images/godwin-apedo-icon.png",
-    apple: "/images/godwin-apedo-icon.png",
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   keywords: [
     "Godwin Apedo",
